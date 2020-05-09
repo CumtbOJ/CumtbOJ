@@ -2,12 +2,16 @@
 namespace app\controller;
 use app\model\hustoj as hs;
 use think\Request;
+use think\facade\Db;
 class Insert{
     protected $request;
     public function __construct(Request $request){
         $this->request=$request;
     }
-
+    public function test(){
+        $user = Db::connect('mysql')->table('hustoj_users')->select();
+        return json($user);
+    }
     public function insProblem(){
         $user=new hs("problems");
         $datas=[
@@ -33,7 +37,7 @@ class Insert{
         $user->saveAll($datas);
     }
     public function insUser(){
-        $userTable=new hs("users");
+        $userTable=new hs("hustoj_users");
         $allData=[
             [
                 "username" => 'oyjy',
@@ -63,6 +67,7 @@ class Insert{
     }
     public function insUserOne(){//注册一个用户
         $userTable=new hs("hustoj_users");
+        //return ($userTable->select());
         //return json($this->request->method());
 		//判断用户名是否重复, 用户名、昵称、密码是否为空
         $tp = $userTable->where("username",$this->request->param('username'))->find(); //在数据库中查找用户名是否已经被注册
