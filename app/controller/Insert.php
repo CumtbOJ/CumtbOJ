@@ -72,8 +72,8 @@ class Insert{
 		//判断用户名是否重复, 用户名、昵称、密码是否为空
         $tp = $userTable->where("username",$this->request->param('username'))->find(); //在数据库中查找用户名是否已经被注册
         $username = $this->request->param("username"); 
-        $nick = $this->request->param("nick");
-        $password = $this->request->param("password");
+        $nick = $this->request->param("nickname");
+        $password = $this->request->param("password1");
 
         if ($tp==NUll){ //如果用户名没有被注册,就继续判断
             if ($username == Null) return json(['msg' => "用户名不能为空",'code' => '111']); //判断用户名是否为空
