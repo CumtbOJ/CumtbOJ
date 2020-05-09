@@ -15,4 +15,4 @@ Route::get('think', function () {
 });
 
 Route::get('hello/:name', 'index/hello');
-Route::rule('iUO', 'Insert/insUserOne', 'GET|POST');
+Route::rule('iUO', 'Insert/insUserOne', 'GET|POST')->allowCrossDomain();
