@@ -1,6 +1,7 @@
 <?php
 namespace app\controller;
-use app\model\hustoj as hs;
+use app\model\hustoj_users as Hu;
+use app\model\Hustoj_problem as ProblemModel;
 use think\Request;
 use think\facade\Db;
 class Insert{
@@ -11,6 +12,16 @@ class Insert{
     public function test(){
         $user = Db::connect('mysql')->table('hustoj_users')->select();
         return json($user);
+    }
+    public  function  update()
+    {
+        //$problem = new ProblemModel("hustoj_problem");
+        //$tmp = ProblemModel::where('id','1')->select();
+        $tmp = ProblemModel::where('id','1')->find();
+        $tmp->status ='1';
+        $tmp->save();
+        return json($tmp);
+        //return json($tmp);
     }
     public function insProblem(){
         $user=new hs("problems");
@@ -66,15 +77,16 @@ class Insert{
         }
     }
     public function insUserOne(){//注册一个用户
-        $userTable=new hs("hustoj_users");
+        $userTable=new Hu();
         //return ($userTable->select());
         //return json($this->request->method());
 		//判断用户名是否重复, 用户名、昵称、密码是否为空
-        $tp = $userTable->where("username",$this->request->param('username'))->find(); //在数据库中查找用户名是否已经被注册
+        
         $username = $this->request->param("username"); 
         $nick = $this->request->param("nickname");
         $password = $this->request->param("password1");
-
+        $tp = $userTable->where("username",$username)->find(); //在数据库中查找用户名是否已经被注册
+        
         if ($tp==NUll){ //如果用户名没有被注册,就继续判断
             if ($username == Null) return json(['msg' => "用户名不能为空",'code' => '111']); //判断用户名是否为空
             if ($nick == Null) return json(['msg' => "昵称不能为空",'code' => '112']); //判断昵称是否为空
