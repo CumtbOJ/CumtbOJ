@@ -1,8 +1,8 @@
 <?php
 namespace app\controller;
 
-use app\model\Hustoj_users as Hu;
-use app\model\Hustoj_problem as Hp;
+use app\model\hustoj_users as Hu;
+use app\model\hustoj_problem as Hp;
 use think\facade\Request;
 class Logout{
     public function Index(){
