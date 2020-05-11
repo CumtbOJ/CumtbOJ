@@ -31,7 +31,20 @@ class Login
             }
             $user->status ='1';
             $user->save();
-            return json(["msg" => '登录成功',"code" => 3]);            
+            $data=[
+                'token' => '123',
+                'userdata' =>[
+                    'username' => $user->username,
+                    'nickname' => $user->nick,
+                    'school' => $user->school,
+                    'email' => $user->email,
+                    'thers' =>[
+                        "others" => '1',
+                    ],
+                ],
+            ];
+
+            return json(["msg" => '登录成功',"code" => 3,"data" => $data]);            
         }else 
             return json(["msg" => '密码错误',"code" => 2]);
 

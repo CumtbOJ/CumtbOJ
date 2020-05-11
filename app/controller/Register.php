@@ -24,7 +24,7 @@ class Register{
         $tp2 = $userTable->where("email",$email)->find(); //在数据库中查找邮箱是否已经被注册
         if ($tp1==NUll){ //如果用户名没有被注册,就继续判断
             if ($tp2 != NULL){
-                return (['code' => 2,'msg' => '邮箱已存在']);
+                return json(['code' => 2,'msg' => '邮箱已存在']);
             }
             $userTable->save([ //没有问题就储存用户名
                 'username' => $username,
@@ -33,7 +33,19 @@ class Register{
                 'school' => $school,
                 'email' => $email,
             ]);
-            return json(['meg' => "注册成功",'code' => '0']);
+            $data=[
+                'token' => '123',
+                'userdata' =>[
+                    'username' => $username,
+                    'nickname' => $nick,
+                    'school' => $school,
+                    'email' => $email,
+                    'others' =>[
+                        "others" => '1',
+                    ],
+                ],
+            ];
+            return json(['meg' => "注册成功",'code' => '0','data' => $data]);
 
         }else{//用户名已经注册,返回错误
             return json(['code' => '1','meg' => "用户名已存在"]);
