@@ -5,9 +5,8 @@ namespace app\controller;
 
 /*use app\model\Users as UsersModel;*/
 
-use app\model\Hustoj as Hs;
-use app\model\Hustoj_users as Hu;
-use app\model\Hustoj_problem as Hp;
+use app\model\hustoj_users as Hu;
+use app\model\hustoj_problem as Hp;
 use think\facade\Db;
 use think\facade\Request;
 //use think\Request;
