@@ -1,7 +1,6 @@
 <?php
 namespace app\model;
 use think\Model;
-
-class Hustoj_users extends Model{
+class hustoj_users extends Model{
     
 }

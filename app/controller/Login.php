@@ -31,7 +31,7 @@ class Login
         $password = Request::param('password1');
         $userTable = new Hu();
         $user = $userTable->where("username",$username)->find();
-        $user->status = '1';
+        $user->status = 1;
         $user->save();
         return json($user);
         //$user = Hs::select();
