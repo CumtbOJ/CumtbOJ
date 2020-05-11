@@ -8,7 +8,7 @@ use app\model\Problem;
 use app\model\Problem as ProblemModel;
 use app\model\Users;
 use think\facade\Db;
-use app\model\Hustoj_users as Hu;
+
 class DataModel
 {
     public  function  index()
@@ -45,7 +45,7 @@ class DataModel
         //$tmp = ProblemModel::where('id','1')->select();
         $tmp = Users::update([
                 'status' => true
-            ],['id'=>1]);
+            ],['id'=>2]);
         //return $tmp->getLastSql();
         return json($tmp);
         //return json($tmp);
@@ -54,11 +54,5 @@ class DataModel
     {
         $user = ProblemModel::find(1000);
         return  json($user->difficulty);
-    }
-    public function status(){
-        $user = Hu::where('username','t1')->find();
-        $user-> status = 1;
-        $user -> save() ;
-        return json($user);
     }
 }
