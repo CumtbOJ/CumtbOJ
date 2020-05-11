@@ -45,7 +45,7 @@ class DataModel
         //$tmp = ProblemModel::where('id','1')->select();
         $tmp = Users::update([
                 'status' => true
-            ],['id'=>1]);
+            ],['id'=>2]);
         //return $tmp->getLastSql();
         return json($tmp);
         //return json($tmp);
