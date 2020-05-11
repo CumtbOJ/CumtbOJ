@@ -26,9 +26,9 @@ class Login
             return json(["msg" => '用户名不存在',"code" =>1]);
         }
         if($user["password"]==$password){
-            if ($user['status']==1){
+            /*if ($user['status']==1){
                 return json(['msg' => '你的账号已经在别处登录',"code" => 4]);
-            }
+            }*/
             $user->status ='1';
             $user->save();
             $data=[
