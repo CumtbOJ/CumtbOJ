@@ -20,5 +20,7 @@ class Index extends BaseController
 	public function info(){
 		return info();
 	}
-	
+	public function sec(){
+        return md5("123456");
+    }
 }

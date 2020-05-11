@@ -11,4 +11,11 @@ class Database{
     public function showProblem(){
         $user=Db::name("hustoj_problem")->select();
     }
+    public function useMd5(){
+        $users=Hu::select();
+        foreach($users as $user){
+            $user->password=md5($user->password);
+            $user->save();
+        }
+    }
 }

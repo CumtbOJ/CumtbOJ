@@ -14,6 +14,7 @@ class Register{
 		//判断用户名是否重复, 用户名、昵称、密码是否为空
         
         $username = $this->request->param("username");  //获取用户
+        $username = md5($username);
         $nick = $this->request->param("nickname");   //获取用户昵称
         $password = $this->request->param("password");   //获取密码
         $school = $this->request->param("school");   //获取学校

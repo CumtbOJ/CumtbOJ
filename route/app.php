@@ -16,3 +16,5 @@ Route::get('think', function () {
 
 Route::get('hello/:name', 'index/hello');
 Route::rule('iUO', 'Register/insUserOne','get|post');//->allowCrossDomain();
+Route::rule('li','Login/authenticate','get|post');
+Route::rule('lo','Logout/out','get|post');

@@ -5,7 +5,8 @@ return array (
   'username' => 'string',
   'password' => 'string',
   'status' => 'string',
-  'ss' => 'string',
+  'email' => 'string',
+  'school' => 'string',
   '_pk' => 'id',
   '_autoinc' => 'id',
 );
