@@ -8,3 +8,6 @@ ALTER TABLE test_table CHANGE test_value_old test_value_new VARCHAR(10) NOT NULL
 
 -- 删除test_table表的 test_value字段
 ALTER TABLE hustoj_users DROP COLUMN status;
+
+ALTER TABLE hustoj_users ADD COLUMN `email` varchar(40);
+ALTER TABLE hustoj_users ADD COLUMN `school` varchar(40);
