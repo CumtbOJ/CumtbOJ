@@ -10,25 +10,25 @@ use think\facade\Cache;
 
 
 class Database{
-function deldir($dir=__DIR__) {
-    $dir=$dir."/../../runtime";
-    $dh=@opendir($dir);
-    dump($dir);
-    //unlink($dir);
-    
-    while ($file=@readdir($dh)) {
-        dump($file);
-        if($file!="." && $file!="..") {
-        $fullpath=$dir."/".$file;
-        if(!is_dir($fullpath)) {
-            @unlink($fullpath);  
-        } else {
-            deletedir($fullpath);
-        }
+    public function delDir($dir=__DIR__."/../../runtime") {
+        $dh=@opendir($dir);
+        dump($dir);
+        //unlink($dir);
+        
+        while ($file=@readdir($dh)) {
+            dump($file);
+            if($file!="." && $file!="..") {
+                $fullpath=$dir."/".$file;
+                if(!is_dir($fullpath)) {
+                    @unlink($fullpath);  
+                } else {
+                    self::delDir($fullpath);
+                }
+            }  
+        } 
+        @rmdir($dir);
     }
-}
-@rmdir($dir);
-}
+
 
     public function showUser(){ //显示所有用户信息
         $user = Hu::where('id','>','-1')->select();
@@ -46,6 +46,13 @@ function deldir($dir=__DIR__) {
         }
     }
     public function delUser(){//清空用户
+        $user=Hu::where("id",'>','-1');
+        $tp=$user->delete();
+        if ($tp>0)return json("清空完毕");
+        else return json("清空失败,请检查是否已经清空");
+
+    }
+    public function delUserOne(){//删除指定用户
         $user=Hu::where("id",'>','-1');
         $tp=$user->delete();
         if ($tp>0)return json("清空完毕");
@@ -88,7 +95,7 @@ function deldir($dir=__DIR__) {
         }
         return json("添加成功");
     }
-    public function insUser(){
+    public function insUser(){//自动添加用户
         $num=Request::param("num");
         $name=new name();
         for($i=1;$i<=$num;$i++){
