@@ -24,10 +24,11 @@ class Database{
         }
     }
     public function delUser(){//删除指定用户
-        $user=Hu::where("username",Request::param("username"));
-        $tp=$user->delete();
-        if ($tp==1)return json("删除成功");
-        else return json("删除失败");
+        Hu::where('id','>',35)->delete();
+//        $user=Hu::where("username",Request::param("id"));
+//        $tp=$user->delete();
+//        if ($tp==1)return json("删除成功");
+//        else return json("删除失败");
     }
     public function delProblem(){//清空题库
         $user=Hp::where('number','>','-1');

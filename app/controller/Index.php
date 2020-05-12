@@ -1,4 +1,5 @@
 <?php
+
 namespace app\controller;
 
 use app\BaseController;
@@ -13,14 +14,34 @@ class Index extends BaseController
     public function hello($name = 'ThinkPHP6')
     {
         return 'hello,' . $name;
-	}
-	public function mqd(){
-		echo  "I am mqd<br>";
-	}
-	public function info(){
-		return info();
-	}
-	public function sec(){
+    }
+
+    public function mqd()
+    {
+        echo "I am mqd<br>";
+    }
+
+    public function info()
+    {
+        return info();
+    }
+
+    public function sec()
+    {
         return md5("123456");
+    }
+
+    public function error()
+    {
+        //抛出异常
+//        abort(400,'我是故意的');
+//        ApiException('oyjy',123,404);
+
+        $list = [
+            'name' => '123',
+            'username' => 'asdf'
+        ];
+        return showSuccess($list);
+//        return showError();
     }
 }
