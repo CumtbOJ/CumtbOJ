@@ -26,5 +26,7 @@ Route::group(function () {  //user组
 
 Route::group(function(){
     Route::rule('lp','lst.Problem/showProblem','get|post');
+    Route::rule('lpc','lst.ProblemContent/showProblemContent','get|post');
+    
 });
 

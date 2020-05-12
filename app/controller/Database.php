@@ -90,6 +90,8 @@ class Database{
                 'tag' => [$tag[mt_rand(0,1)],$tag[mt_rand(2,3)],$tag[mt_rand(4,6)]], 
                 'submitTime' => $submitTime,
                 'ACTime' => mt_rand(0,50)+$submitTime,
+                'timeLimit' => 1.5,
+                'memoryLimit' => 256,
             ];
             $problem->save($data);
             //return json($problem->difficulty);

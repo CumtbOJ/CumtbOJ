@@ -27,5 +27,14 @@ CREATE TABLE `hustoj_problem` (
   `rate` varchar(40) ,
   `submitTime` int DEFAULT 0,
   `ACTime` int DEFAULT 0,
+  `content` TEXT, 
+  `inputFormat` TEXT,
+  `outputFormat` TEXT,
+  `sampleInput` TEXT,
+  `sampleOutput` TEXT,
+  `hint` TEXT,
+  `provider` varchar(100),
+  `timeLimit` float NOT NULL,
+  `memoryLimit` int NOT NULL,
   PRIMARY KEY (`number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;

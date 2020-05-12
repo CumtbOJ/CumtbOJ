@@ -6,7 +6,16 @@ use think\facade\Request;
 
 class Problem{
     public function showProblem(){
-        $dataAll=Hp::where("number",'>','-1')->select();
+        $dataAll=Hp::where("number",'>','-1')->field([
+            'status',
+            'number',
+            'title',
+            'tag',
+            'difficulty',
+            'rate',
+            'submitTime',
+            'ACTime',
+        ])->hidden(['submitTime','ACTime'])->select();
         if ($dataAll == Null){
             return json(['code' => '1']);
         }else {
