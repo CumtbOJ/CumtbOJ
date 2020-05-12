@@ -13,7 +13,7 @@ class Database{
         return json($user);
     }
     public function showProblem(){//显示所有题目信息
-        $problem = Hp::where('number','>','-1')->find();
+        $problem = Hp::where('number','>','-1')->select();
         return json($problem);
     }
     public function useMd5(){ //将所有密码进行md5加密
@@ -30,8 +30,11 @@ class Database{
         else return json("删除失败");
     }
     public function delProblem(){//清空题库
-        $tp=Hp::where('number','<','1000000')->delete();
-        if ($tp==1)return json("清空完毕");
+        $user=Hp::where('number','>','-1');
+        if (Hp::where('number','>','-1')->find() == Null) 
+            return json("题目已空,无法再次清空");
+        $tp=$user->delete();
+        if ($tp>0)return json("清空完毕");
         else return json("清空失败");
     }
     public function chPassword(){//更改密码
@@ -44,7 +47,7 @@ class Database{
         $user->save();
         return json("更改成功");
     }
-    public function insProblem(){
+    public function insProblem(){ //添加题目
         for($i=1;$i<=20;$i++){
             $problem=new Hp();
             $tag=["数据结构","贪心","搜索","动态规划","二分","数论","图论"];
@@ -57,7 +60,7 @@ class Database{
             $problem->save($data);
             //return json($problem);
         }
-        return "添加成功";
+        return json("添加成功");
     }
     public function find(){
         $problem = Hp::where('number','<','100000')->find();
