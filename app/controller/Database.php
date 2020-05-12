@@ -12,11 +12,11 @@ use think\facade\Cache;
 class Database{
     public function delDir($dir=__DIR__."/../../runtime") {
         $dh=@opendir($dir);
-        dump($dir);
+        //dump($dir);
         //unlink($dir);
         
         while ($file=@readdir($dh)) {
-            dump($file);
+            //dump($file);
             if($file!="." && $file!="..") {
                 $fullpath=$dir."/".$file;
                 if(!is_dir($fullpath)) {
@@ -27,6 +27,7 @@ class Database{
             }  
         } 
         @rmdir($dir);
+        return json("清理完毕");
     }
 
 
