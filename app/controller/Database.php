@@ -11,21 +11,23 @@ use think\facade\Cache;
 
 class Database{
 function deldir($dir=__DIR__) {
-    $dir=$dir."/../../runtime/";
+    $dir=$dir."/../../runtime";
     $dh=@opendir($dir);
     dump($dir);
+    //unlink($dir);
+    
     while ($file=@readdir($dh)) {
         dump($file);
         if($file!="." && $file!="..") {
         $fullpath=$dir."/".$file;
         if(!is_dir($fullpath)) {
-            unlink($fullpath);  
+            @unlink($fullpath);  
         } else {
-            deldirall($fullpath);
+            deletedir($fullpath);
         }
     }
 }
-@closedir($dh);
+@rmdir($dir);
 }
 
     public function showUser(){ //显示所有用户信息
