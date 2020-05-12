@@ -1,5 +1,5 @@
 <?php
-namespace app\controller;
+namespace app\controller\user;
 
 use app\model\hustoj_users as Hu;
 use app\model\hustoj_problem as Hp;

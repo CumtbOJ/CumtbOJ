@@ -17,9 +17,6 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
--- ----------------------------
--- Table structure for hustoj_users
--- ----------------------------
 DROP TABLE IF EXISTS `hustoj_users`;
 CREATE TABLE `hustoj_users` (
   `nick` varchar(40) NOT NULL,

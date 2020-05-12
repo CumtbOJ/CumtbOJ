@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\controller;
+namespace app\controller\user;
 
 
 use app\model\hustoj_users as Hu;

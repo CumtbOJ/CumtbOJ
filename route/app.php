@@ -15,6 +15,16 @@ Route::get('think', function () {
 });
 
 Route::get('hello/:name', 'index/hello');
-Route::rule('iUO', 'Register/insUserOne','get|post');//->allowCrossDomain();
-Route::rule('li','Login/authenticate','get|post');
-Route::rule('lo','Logout/out','get|post');
+
+
+
+Route::group(function () {  //user组
+    Route::rule('iUO', 'user.Register/insUserOne','get|post'); //注册用户
+    Route::rule('li','user.Login/authenticate','get|post');//登录用户
+    Route::rule('lo','user.Logout/out','get|post');//登出用户
+});
+
+Route::group(function(){
+    Route::rule('lp','lst.Problem/showProblem','get|post');
+});
+

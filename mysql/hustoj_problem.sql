@@ -17,27 +17,13 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
--- ----------------------------
--- Table structure for hustoj_problem
--- ----------------------------
 DROP TABLE IF EXISTS `hustoj_problem`;
 CREATE TABLE `hustoj_problem` (
-  `status` char(1) DEFAULT NULL,
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) NOT NULL,
-  `index` varchar(100) DEFAULT NULL,
-  `level` varchar(40) DEFAULT NULL,
-  `passrate` float DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `status` tinyint(1) DEFAULT 0 NOT NULL,
+  `number` int unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(40) NOT NULL,	
+  `tag` varchar(400) DEFAULT NULL,
+  `difficultly` varchar(40) DEFAULT NULL,
+  `rate` float DEFAULT 0,
+  PRIMARY KEY (`number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of hustoj_problem
--- ----------------------------
-BEGIN;
-INSERT INTO `hustoj_problem` VALUES (NULL, 1, 'A+B Promblem', '', '入门', 0.53);
-INSERT INTO `hustoj_problem` VALUES (NULL, 2, '超级玛丽游戏', '', '入门', 0.73);
-INSERT INTO `hustoj_problem` VALUES (NULL, 3, '过合卒', 'NOIP普及组', '普及-', 0.42);
-COMMIT;
-
-SET FOREIGN_KEY_CHECKS = 1;
