@@ -24,6 +24,8 @@ CREATE TABLE `hustoj_problem` (
   `title` varchar(40) NOT NULL,	
   `tag` varchar(400) DEFAULT NULL,
   `difficulty` int(40)  NOT NULL,
-  `rate` float DEFAULT 0,
+  `rate` varchar(40) ,
+  `submitTime` int DEFAULT 0,
+  `ACTime` int DEFAULT 0,
   PRIMARY KEY (`number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
