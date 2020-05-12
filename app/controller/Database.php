@@ -50,6 +50,7 @@ function deldir($dir=__DIR__) {
         $tp=$user->delete();
         if ($tp>0)return json("清空完毕");
         else return json("清空失败,请检查是否已经清空");
+
     }
     public function delProblem(){//清空题库
         $user=Hp::where('number','>','-1');

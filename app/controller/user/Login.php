@@ -3,7 +3,6 @@
 
 namespace app\controller\user;
 
-
 use app\model\hustoj_users as Hu;
 use app\model\hustoj_problem as Hp;
 use think\facade\Db;
@@ -23,7 +22,7 @@ class Login
         $userTable = new Hu();
         $user = $userTable->where("username",$username)->find();
         if ($user==Null){
-            return json(["msg" => '用户名不存在',"code" =>1]);
+            ApiException('用户名不存在');
         }
         if($user["password"]==$password){
             /*if ($user['status']==1){
@@ -43,10 +42,9 @@ class Login
                     ],
                 ],
             ];
-
-            return json(["msg" => '登录成功',"code" => 3,"data" => $data]);            
-        }else 
-            return json(["msg" => '密码错误',"code" => 2]);
-
+            return showSuccess($data,'登录成功');
+        }else {
+         ApiException('密码错误');
+        }
     }
 }
