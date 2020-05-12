@@ -52,13 +52,12 @@ class Database{
             $problem=new Hp();
             $tag=["数据结构","贪心","搜索","动态规划","二分","数论","图论"];
             $data=[
+                'difficulty' => mt_rand(0,2),
                 'title' => 'test'.$i,
-                'tag' => [$tag[mt_rand(0,1)],$tag[mt_rand(2,3)],$tag[mt_rand(4,6)]],
-                //  'tag' => [$tag[mt_rand(0,1)]],
-                'difficult' => mt_rand(0,2),
+                'tag' => [$tag[mt_rand(0,1)],$tag[mt_rand(2,3)],$tag[mt_rand(4,6)]], 
             ];
             $problem->save($data);
-            //return json($problem);
+            //return json($problem->difficulty);
         }
         return json("添加成功");
     }

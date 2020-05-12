@@ -4,7 +4,7 @@ return array (
   'number' => 'int',
   'title' => 'string',
   'tag' => 'string',
-  'difficultly' => 'string',
+  'difficulty' => 'int',
   'rate' => 'float',
   '_pk' => 'number',
   '_autoinc' => 'number',

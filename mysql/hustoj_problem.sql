@@ -23,7 +23,7 @@ CREATE TABLE `hustoj_problem` (
   `number` int unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(40) NOT NULL,	
   `tag` varchar(400) DEFAULT NULL,
-  `difficultly` varchar(40) DEFAULT NULL,
+  `difficulty` int(40)  NOT NULL,
   `rate` float DEFAULT 0,
   PRIMARY KEY (`number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
