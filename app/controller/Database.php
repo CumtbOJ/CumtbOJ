@@ -92,11 +92,18 @@ class Database{
                 'ACTime' => mt_rand(0,50)+$submitTime,
                 'timeLimit' => 1.5,
                 'memoryLimit' => 256,
+                'content' => '这是题目描述',
+                'inputFormat' => '这是输入格式',
+                'outputFormat' => '这是输出格式',
+                'sampleInput' => '这是输入样例',
+                'sampleOutput' => '这是输出样例',
+                'hint' => '这是提示',
+                'provider' => '这是题目提供者',
             ];
             $problem->save($data);
             //return json($problem->difficulty);
         }
-        return json("添加成功");
+        return json("添加成功".$num."个题目");
     }
     public function insUser(){//自动添加用户
         $num=Request::param("num");
@@ -115,8 +122,5 @@ class Database{
         }
         return json("成功添加".$num."个用户,密码是用户名的数字部分");
     }
-    public function find(){
-        $problem = Hp::where('number','<','100000')->find();
-        return json($problem);
-    }
+
 }

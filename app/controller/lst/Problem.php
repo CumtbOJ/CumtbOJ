@@ -6,7 +6,7 @@ use think\facade\Request;
 
 class Problem{
     public function showProblem(){
-        $dataAll=Hp::where("number",'>','-1')->field([
+        $dataAll=Hp::field([
             'status',
             'number',
             'title',
@@ -16,10 +16,10 @@ class Problem{
             'submitTime',
             'ACTime',
         ])->hidden(['submitTime','ACTime'])->select();
-        if ($dataAll == Null){
-            return json(['code' => '1']);
+        if ($dataAll->isEmpty()){
+            ApiException("题目列表为空");
         }else {
-            return json(['code' => '0' , 'form' => $dataAll]);
+            return showSuccess($dataAll,"题目列表");
         }
     }
 }

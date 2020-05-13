@@ -15,7 +15,7 @@ class ProblemContent{
                 'sampleInput',
                 'sampleOutput',
                 'hint',
-            ])->select();
+            ])->find();
         $right=Hp::where("number",$number)->field([
             'provider',
             'difficulty',
@@ -26,13 +26,12 @@ class ProblemContent{
             'tag',
             'ACTime',
             'submitTime'
-        ])->hidden(['submitTime','ACTime'])->select();     
-        //  return json($left);
-        $data=['left' => $left['0'] , 'right' => $right['0']];   
-        if ($left->isEmpty()){
-            return ApiException("没有此题目");
-        }else {
-            return showSuccess($data,"跳转成功");
-        }
+        ])->hidden(['submitTime','ACTime'])->find();     
+
+        if ($left == Null)
+            ApiException("没有此题目");
+        $data=['left' => $left , 'right' => $right];   
+        return showSuccess($data,"跳转成功");
+
     }
 }
