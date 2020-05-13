@@ -27,8 +27,9 @@ class ProblemContent{
             'ACTime',
             'submitTime'
         ])->hidden(['submitTime','ACTime'])->select();     
-        $data=['left' => $left , 'right' => $right];   
-        if ($data == Null){
+        //  return json($left);
+        $data=['left' => $left['0'] , 'right' => $right['0']];   
+        if ($left->isEmpty()){
             return ApiException("没有此题目");
         }else {
             return showSuccess($data,"跳转成功");
