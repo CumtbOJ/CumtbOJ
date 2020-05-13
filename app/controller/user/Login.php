@@ -32,19 +32,11 @@ class Login
             $user->save();
             $data=[
                 'token' => '123',
-                'userdata' =>[
-                    'username' => $user->username,
-                    'nickname' => $user->nick,
-                    'school' => $user->school,
-                    'email' => $user->email,
-                    'thers' =>[
-                        "others" => '1',
-                    ],
-                ],
+                'userdata' =>$user
             ];
             return showSuccess($data,'登录成功');
         }else {
-         ApiException('密码错误');
+            ApiException('密码错误');
         }
     }
 }

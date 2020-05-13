@@ -48,9 +48,6 @@ class Register
                     'nickname' => $nick,
                     'school' => $school,
                     'email' => $email,
-                    'others' => [
-                        "others" => '1',
-                    ],
                 ],
             ];
             return showSuccess($data,'注册成功');

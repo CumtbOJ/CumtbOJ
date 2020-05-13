@@ -9,14 +9,13 @@ class Logout{
         return 'index';
     }
     public function out(){
-
-        $username = Request::param('username');
+        $username = Request::param("username");
         $user = Hu::where("username",$username)->find();
         if ($user==Null || $user->status==0){
-            ApiException('注销失败');
+            ApiException("注销失败");
         }
         $user->status=0;
         $user->save();
-        return showSuccess('','注销成功');
+        return showSuccess("","注销成功");
     }
 }
