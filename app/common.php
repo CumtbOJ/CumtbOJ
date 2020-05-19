@@ -10,7 +10,7 @@ function ApiException($msg = '请求错误', $errorCode = 20000, $statusCode = 4
 }
 
 //成功返回
-function showSuccess($data = '', $msg = 'ok', $code = 200)
+function showSuccess($data = '', $msg = 'ok', $token = 'token',$code = 200)
 {
     return json([
         'msg' => $msg,

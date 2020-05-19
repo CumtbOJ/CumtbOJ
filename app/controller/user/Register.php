@@ -3,24 +3,34 @@
 namespace app\controller\user;
 
 use app\model\hustoj_users as Hu;
-use app\model\Hustoj_problem as ProblemModel;
-use think\Request;
-use think\facade\Db;
+use think\facade\Request;
+use app\validate\User;
 
 class Register
 {
-    protected $request;
-
-    public function __construct(Request $request)
+    public function insUserOne()//注册一个用户
     {
-        $this->request = $request;
+
+        $userData =request::param(); //获取用户注册信息, 类型为array
+        //try { validate(Re::class)->check([ 'name' => '蜡笔小新', 'price' => 90, 'email' => 'xiaoxin@163.com' ]); } catch (ValidateException $e) { dump($e->getError()); }
+        
+        try{
+            validate(User::class)->scene('register')->check($userData);
+        }catch(ValidateException $e){
+            //dump ($e);
+            //return 1;
+            dump($e->getError());
+        }
+        $user=Hu::create($userData); //创建用户, 并保存创建的的内容,类型为object
+        $data=[
+            'token' => '123',
+            'userdata' => $user->hidden(['password','id']), //这里应该是隐式地转换成了数组
+        ];
+        return showSuccess($data,'注册成功');
     }
 
-    public function insUserOne()
-    {//注册一个用户
-        $userTable = new Hu();
-        //判断用户名是否重复, 用户名、昵称、密码是否为空
 
+    public function insUseOneOld(){ //旧版本的注册用户
         $username = $this->request->param("username");  //获取用户
         $nick = $this->request->param("nickname");   //获取用户昵称
         $password = $this->request->param("password");   //获取密码
@@ -55,7 +65,5 @@ class Register
         } else {//用户名已经注册,返回错误
             ApiException('用户名已存在');
         }
-
     }
-
 }

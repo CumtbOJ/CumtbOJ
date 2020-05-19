@@ -122,5 +122,11 @@ class Database{
         }
         return json("成功添加".$num."个用户,密码是用户名的数字部分");
     }
+    public function test(){
+        //return redirect('../lpc')->with('name','mqd');
+        //$url = url('../lpc?number=60'); 
+        //return '<a href="'.$url.'">点击查看<a>';
+        //return redirect('1')->with('flag', '1')->restore();
+    }
 
 }

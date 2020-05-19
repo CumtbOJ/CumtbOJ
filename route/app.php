@@ -24,9 +24,9 @@ Route::group(function () {  //user组
     Route::rule('lo','user.Logout/out','get|post');//登出用户
 })->allowCrossDomain();
 
-Route::group(function(){
-    Route::rule('lp','lst.Problem/showProblem','get|post');
-    Route::rule('lpc','lst.ProblemContent/showProblemContent','get|post');
+Route::group(function(){  
+    Route::rule('lp','lst.Problem/showProblem','get|post'); //列出题目列表
+    Route::rule('lpc','lst.ProblemContent/showProblemContent','get|post'); //列出题目内容
     
 })->allowCrossDomain();
 
