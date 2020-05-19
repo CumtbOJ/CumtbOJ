@@ -1,12 +1,12 @@
 <?php 
 return array (
-  'nick' => 'string',
+  'nickname' => 'string',
   'id' => 'int',
   'username' => 'string',
   'password' => 'string',
   'status' => 'string',
-  'email' => 'string',
   'school' => 'string',
+  'email' => 'string',
   '_pk' => 'id',
   '_autoinc' => 'id',
 );

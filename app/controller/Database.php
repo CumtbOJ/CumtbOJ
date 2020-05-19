@@ -112,7 +112,7 @@ class Database{
             $user=new Hu();
             $data=[
                 'username' => "test".$i,
-                'nick' => $name->randnick(),
+                'nickname' => $name->randnick(),
                 'password' => md5($i),
                 'school' => $name->randschool(),
                 'email' => mt_rand(1000,10000)."@163.com", 
