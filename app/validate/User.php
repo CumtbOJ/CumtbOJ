@@ -5,6 +5,7 @@ namespace app\validate;
 
 use think\Validate;
 use app\model\hustoj_users as Hu;
+use think\facade\Request;
 class user extends Validate
 {
     /**
@@ -22,7 +23,7 @@ class user extends Validate
 
     protected $scene=[
         'register' => ['username','password','nickname','email'],
-        'login' => ['username','password'],
+        'login' => ['username'],
         'logout' => ['username'],
     ];
 
@@ -52,19 +53,27 @@ class user extends Validate
         if (md5($value)==$password)return true;
         return "密码错误";
     }
-    public function checkStatus($value){
+    public function checkStatus($value){//验证状态
         if (Hu::where('username',$value)->value('status')==0) 
             return '用户已经注销';
         return true;
     }
+
     public function sceneRegister(){//注册场景
         $data = $this->append('username','checkHas'); 
         return $data;   
     }
     public function sceneLogin(){//登录场景
-        $data = $this->only(['username','password'])->append('username','checkNotHas')->append('password','checkPassword');
+        $data = $this->only(['username','password'])->append([
+            'username' => 'checkNotHas',
+            'password' => 'checkPassword',
+        ]);
     }
     public function sceneLogout(){//注销场景
-        $data = $this->only(['username'])->append('username','checkNotHas')->append('username','checkStatus');
+        $data = $this->only(['username'])->append([
+            'username'=>'checkNotHas',
+            'username'=>'checkStatus',
+        ]);
     }
+
 }

@@ -113,7 +113,7 @@ class Database{
             $data=[
                 'username' => "test".$i,
                 'nickname' => $name->randnick(),
-                'password' => md5($i),
+                'password' => $i,
                 'school' => $name->randschool(),
                 'email' => mt_rand(1000,10000)."@163.com", 
             ];

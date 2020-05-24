@@ -18,10 +18,10 @@ Route::get('hello/:name', 'index/hello');
 
 
 
-Route::group(function () {  //user组
-    Route::rule('iUO', 'user.Register/insUserOne','get|post'); //注册用户
-    Route::rule('li','user.Login/authenticate','get|post');//登录用户
-    Route::rule('lo','user.Logout/out','get|post');//登出用户
+Route::group('user',function () {  //user组
+    Route::rule('iuo', 'user/Register','get|post'); //注册用户
+    Route::rule('li','user/Login','get|post')->middleware(Login::class);//登录用户
+    Route::rule('lo','user/Logout','get|post');//登出用户
 })->allowCrossDomain();
 
 Route::group(function(){  

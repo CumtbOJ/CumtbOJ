@@ -7,7 +7,7 @@ use think\facade\Request;
 class Logout{
     public function out(){
         $userData=Request::param();
-        validate(User::class)->scene('logout')->check($userData);
+        //validate(User::class)->scene('logout')->check($userData);
         $user=Hu::where('username',$userData['username'])->find();
         $user->status=0;
         $user->save();
@@ -22,5 +22,14 @@ class Logout{
         $user->status=0;
         $user->save();
         return showSuccess("","注销成功");
+    }
+    public function checkToken(){//检查token 是否正确
+        $token = Request::param('token');
+        //dump($token);
+        $jwtToken = new \Token();
+        $checkToken = $jwtToken->checkToken($token);
+        //dump($checkToken);
+        $data = $checkToken['data']['data'];
+        return json($data);
     }
 }

@@ -12,12 +12,13 @@ class Login
     public function authenticate()//登录验证
     {
         $userData = Request::param();
-        validate(User::class)->scene('login')->check($userData);   //调用验证类进行验证      
         $user=Hu::where('username',$userData['username'])->find(); //从数据库查找用户的信息, 类型为object
         $user->status ='1'; //更改状态
+        $jwtToken=new \Token();
+        $token = $jwtToken->createToken($user->visible(['id','username'])); //用用户信息制造一个token
         $user->save();
         $data=[
-            'token' => '123',
+            'token' => $token,
             'userdata' =>$user->hidden(['password','id']), //返回信息时隐藏密码,ID
         ]; 
         return showSuccess($data,'登录成功');
