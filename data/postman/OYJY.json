@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "fb18ec48-d62e-4ae9-a972-d6ec56da95f2",
+		"name": "OYJY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/iUO?username=test16&nickname=第一用户&password=1&requiredPassword=1&school=宇宙联合大学&email=zldark@124.com",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"iUO"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "test16"
+						},
+						{
+							"key": "nickname",
+							"value": "第一用户"
+						},
+						{
+							"key": "password",
+							"value": "1"
+						},
+						{
+							"key": "requiredPassword",
+							"value": "1"
+						},
+						{
+							"key": "school",
+							"value": "宇宙联合大学"
+						},
+						{
+							"key": "email",
+							"value": "zldark@124.com"
+						}
+					]
+				},
+				"description": "注册这边前端参数确定完毕，字符串判空等验证我这边前端已经处理好了\n\n我需要接受的返回请求如下：\n```\n{\n\tcode:1,\n\tmsg:'用户名已存在'\n},\n{\n\tcode:2,\n\tmsg:'邮箱已存在'\n},\n{\n\tcode:0,\n\tmsg:'注册成功',\n\tdata:{\n\t\ttoken:'',\n\t\tuserdata:{\n\t\t\tusername:'',\n\t\t\tnickname:'',\n\t\t\tschool:''\n\t\t\temail:'',\n\t\t\tothers:{\n\t\t\t\t\n\t\t\t}\n\t\t}\n\t}\n}\n```"
+			},
+			"response": [
+				{
+					"name": "register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n            status: 2,\n            number: 156,\n            title: 'bb',\n            tag: 'kk',\n            difficulty: 'hard',\n            rate: 0.66\n          }",
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/Insert/insUserOne?username&nickname&password&requiredPassword&school&email",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"Insert",
+								"insUserOne"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": null
+								},
+								{
+									"key": "nickname",
+									"value": null
+								},
+								{
+									"key": "password",
+									"value": null
+								},
+								{
+									"key": "requiredPassword",
+									"value": null,
+									"description": "二次确认密码"
+								},
+								{
+									"key": "school",
+									"value": null
+								},
+								{
+									"key": "email",
+									"value": null
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 10 May 2020 14:07:12 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.29 (Ubuntu)"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"用户名不能为空\",\n    \"code\": \"111\"\n}"
+				}
+			]
+		},
+		{
+			"name": "删除用户 Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://121.36.4.45/database/delUser",
+					"protocol": "http",
+					"host": [
+						"121",
+						"36",
+						"4",
+						"45"
+					],
+					"path": [
+						"database",
+						"delUser"
+					]
+				},
+				"description": "通过用户名删除用户\n需要参数:\n{\n\tusername\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

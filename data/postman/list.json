@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "90888b93-6da5-4381-8ef6-720cb50ea5b7",
+		"name": "list",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "problem",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseurl}}/lp",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"lp"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "0/1",
+							"description": "当前用户是否做过该题目boolean",
+							"disabled": true
+						},
+						{
+							"key": "number",
+							"value": "12",
+							"description": "题号number",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "超级无敌小可爱",
+							"description": "题目名称string",
+							"disabled": true
+						},
+						{
+							"key": "tag",
+							"value": "线段树",
+							"description": "算法标签string",
+							"disabled": true
+						},
+						{
+							"key": "difficulty",
+							"value": "0/1/2",
+							"description": "0简单,1中等,2困难",
+							"disabled": true
+						},
+						{
+							"key": "rate",
+							"value": "0.78",
+							"description": "小数点",
+							"disabled": true
+						}
+					]
+				},
+				"description": "题目列表\n\n我不需要传参数，我只需要向后端拿数据\n\n```\nreturn{\n//成功：\n\t{\n\t\tcode:0,\n\t\tform:[\n\t\t\t{\n\t\t\t\tstatus:'',\n\t\t\t\tnumber:12,\n\t\t\t\ttitle:'',\n\t\t\t\ttag:1,\n\t\t\t\tdifficulty:1,\n\t\t\t\trate:0.45\n\t\t\t},\n\t\t\t{\n\t\t\t\tstatus:'',\n\t\t\t\tnunber:12,\n\t\t\t\ttitle:'',\n\t\t\t\ttag:1,\n\t\t\t\tdifficulty:1,\n\t\t\t\trate:0.45\n\t\t\t}\n\t\t],\n\t},\n//失败\n\t{\n\t\tcode:1\n\t}\n}\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "challenge",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "?status=‘已结束’ 、‘未开始’，‘正在比赛’&title='acm周赛'&type='acm','oi','作业'&time=05-17 14:00-17:30&number=5&founder=",
+					"query": [
+						{
+							"key": "status",
+							"value": "‘已结束’ 、‘未开始’，‘正在比赛’",
+							"description": "string"
+						},
+						{
+							"key": "title",
+							"value": "'acm周赛'",
+							"description": "string"
+						},
+						{
+							"key": "type",
+							"value": "'acm','oi','作业'",
+							"description": "string 比赛类型"
+						},
+						{
+							"key": "time",
+							"value": "05-17 14:00-17:30",
+							"description": "起止时间 string"
+						},
+						{
+							"key": "number",
+							"value": "5",
+							"description": "题目数量 number"
+						},
+						{
+							"key": "founder",
+							"value": "",
+							"description": "出题人 string"
+						}
+					]
+				},
+				"description": "比赛&作业列表\n\n前端不传递参数，纯粹的接受数据\n\n```\nreturn{\n//success\n\t{\n\t\tcode:0,\n\t\t form: [\n          {\n            status: 0,\n            title: '周赛',\n            type: 'acm',\n            time: '05-17 14:00-17:30',\n            number: 5,\n            founder: '超级无敌小可爱'\n          }\n        ],\n\t},\n//error\n\t{\n\t\tcode:1\n\t}\n}\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "problemContent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/lpc?number=2",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"lpc"
+					],
+					"query": [
+						{
+							"key": "number",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a6890a00-554a-4d5c-9eaf-879a64003741",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c9b1e7e5-6511-4a05-83b5-48fdd42254f9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

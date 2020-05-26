@@ -1,0 +1,491 @@
+{
+	"info": {
+		"_postman_id": "25f0edbd-395b-43d2-a4f5-2d2a909792d7",
+		"name": "user",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "mqd",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nickname",
+							"value": "@@@@",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "requirePassword",
+							"value": "123456",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "1045723308@qq.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "school",
+							"value": "Cumtb",
+							"type": "text",
+							"disabled": true
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/user/iuo?username=test222&nickname=第一用户&password=1&requiredPassword=2&school=宇宙联合大学&email=1110@qq.com",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"user",
+						"iuo"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "test222"
+						},
+						{
+							"key": "nickname",
+							"value": "第一用户"
+						},
+						{
+							"key": "password",
+							"value": "1"
+						},
+						{
+							"key": "requiredPassword",
+							"value": "2"
+						},
+						{
+							"key": "school",
+							"value": "宇宙联合大学"
+						},
+						{
+							"key": "email",
+							"value": "1110@qq.com"
+						}
+					]
+				},
+				"description": "注册这边前端参数确定完毕，字符串判空等验证我这边前端已经处理好了\n\n我需要接受的返回请求如下：\n```\n{\n\tcode:1,\n\tmsg:'用户名已存在'\n},\n{\n\tcode:2,\n\tmsg:'邮箱已存在'\n},\n{\n\tcode:0,\n\tmsg:'注册成功',\n\tdata:{\n\t\ttoken:'',\n\t\tuserdata:{\n\t\t\tusername:'',\n\t\t\tnickname:'',\n\t\t\tschool:''\n\t\t\temail:'',\n\t\t\tothers:{\n\t\t\t\t\n\t\t\t}\n\t\t}\n\t}\n}\n```"
+			},
+			"response": [
+				{
+					"name": "register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n            status: 2,\n            number: 156,\n            title: 'bb',\n            tag: 'kk',\n            difficulty: 'hard',\n            rate: 0.66\n          }",
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/Insert/insUserOne?username&nickname&password&requiredPassword&school&email",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"Insert",
+								"insUserOne"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": null
+								},
+								{
+									"key": "nickname",
+									"value": null
+								},
+								{
+									"key": "password",
+									"value": null
+								},
+								{
+									"key": "requiredPassword",
+									"value": null,
+									"description": "二次确认密码"
+								},
+								{
+									"key": "school",
+									"value": null
+								},
+								{
+									"key": "email",
+									"value": null
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 10 May 2020 14:07:12 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.29 (Ubuntu)"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"用户名不能为空\",\n    \"code\": \"111\"\n}"
+				}
+			]
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseurl}}/user/lo",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"user",
+						"lo"
+					]
+				},
+				"description": "前端已完成\n\n传入username代表注销的用户名\n\n```\n{\n\tcode:0,\n\tmsg:'注销成功'\n},\n{\n\tcode:1,\n\tmsg:'注销失败' //不存在该用户名或者该用户已经注销，所以后端数据库表中：用户需要多加个记录登录状态的参数\n}\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "181b0a13-b76d-470c-bbe5-52c01d63b0e9",
+						"exec": [
+							"",
+							"var acquiretoken = JSON.parse(responseBody);",
+							"",
+							"//定义一个acquiretoken方法(获取token)，把responseBody转为json字符串",
+							"",
+							"pm.environment.set(\"token\",acquiretoken.data.token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "test2",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "2",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/user/li",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"user",
+						"li"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "test2",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				},
+				"description": "登录这边前端参数确认完毕\n```\n{\n\tcode:1,\n\tmsg:'用户名不存在'\n},\n{\n\tcode:2,\n\tmsg:'密码错误'\n},\n{\n\tcode:4,\n\tmsg:'你的密码在别处登录'\n},\n{\n\tcode:3,\n\tmsg:'登录成功',\n\tdata:{\n\t\ttoken:'',\n\t\tuserdata:{\n\t\t\tusername:'',\n\t\t\tnickname:'',\n\t\t\tschool:''\n\t\t\temail:'',\n\t\t\tothers:{\n\t\t\t\t\n\t\t\t}\n\t\t}\n\t}\n}\n```"
+			},
+			"response": [
+				{
+					"name": "login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://121.36.4.45/li?username=oyjyd&password=123456",
+							"protocol": "http",
+							"host": [
+								"121",
+								"36",
+								"4",
+								"45"
+							],
+							"path": [
+								"li"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "oyjyd"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2020 11:24:32 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.29 (Ubuntu)"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"oyjyd用户名不存在\",\n    \"code\": 123\n}"
+				},
+				{
+					"name": "login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ceshi5.dishait.cn/admin/login?username=123&password=123",
+							"protocol": "http",
+							"host": [
+								"ceshi5",
+								"dishait",
+								"cn"
+							],
+							"path": [
+								"admin",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "123"
+								},
+								{
+									"key": "password",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 May 2020 01:47:39 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.2.13"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PATCH, PUT, DELETE"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Authorization, Content-Type, If-Match, If-Modified-Since, If-None-Match, If-Unmodified-Since, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"ok\",\n    \"data\": {\n        \"id\": 3,\n        \"status\": 1,\n        \"create_time\": \"2019-08-05 00:57:47\",\n        \"update_time\": \"2020-02-05 00:55:05\",\n        \"username\": \"admin\",\n        \"password\": \"$2y$10$1s8i7cCKKibJzDs78parX.7hctJWaJCv86Tx/12OFVTEk8ksfv8NC\",\n        \"avatar\": \"http://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5e39862c67d41.jpg\",\n        \"role_id\": 2,\n        \"super\": 1,\n        \"role\": {\n            \"id\": 2,\n            \"status\": 1,\n            \"create_time\": \"2019-08-11 15:34:39\",\n            \"update_time\": \"2019-08-11 20:42:30\",\n            \"name\": \"超级管理员\",\n            \"desc\": \"最高权限\",\n            \"rules\": [\n                {\n                    \"id\": 5,\n                    \"rule_id\": 0,\n                    \"status\": 1,\n                    \"create_time\": \"2019-08-11 13:36:09\",\n                    \"update_time\": \"2020-02-07 16:46:37\",\n                    \"name\": \"首页\",\n                    \"desc\": \"index\",\n                    \"frontpath\": null,\n                    \"condition\": null,\n                    \"menu\": 1,\n                    \"order\": 21,\n                    \"icon\": null,\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 163,\n                        \"role_id\": 2,\n                        \"rule_id\": 5\n                    }\n                },\n                {\n                    \"id\": 6,\n                    \"rule_id\": 0,\n                    \"status\": 1,\n                    \"create_time\": \"2019-08-11 13:36:36\",\n                    \"update_time\": \"2019-08-11 13:36:36\",\n                    \"name\": \"商品\",\n                    \"desc\": \"shop_goods_list\",\n                    \"frontpath\": null,\n                    \"condition\": null,\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": null,\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 165,\n                        \"role_id\": 2,\n                        \"rule_id\": 6\n                    }\n                },\n                {\n                    \"id\": 7,\n                    \"rule_id\": 0,\n                    \"status\": 1,\n                    \"create_time\": \"2019-08-11 13:36:40\",\n                    \"update_time\": \"2019-08-11 13:36:40\",\n                    \"name\": \"订单\",\n                    \"desc\": \"order_order_list\",\n                    \"frontpath\": null,\n                    \"condition\": null,\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": null,\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 171,\n                        \"role_id\": 2,\n                        \"rule_id\": 7\n                    }\n                },\n                {\n                    \"id\": 8,\n                    \"rule_id\": 0,\n                    \"status\": 1,\n                    \"create_time\": \"2019-08-11 13:36:43\",\n                    \"update_time\": \"2019-08-11 13:36:43\",\n                    \"name\": \"会员\",\n                    \"desc\": \"user_user-list_list\",\n                    \"frontpath\": null,\n                    \"condition\": null,\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": null,\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 175,\n                        \"role_id\": 2,\n                        \"rule_id\": 8\n                    }\n                },\n                {\n                    \"id\": 9,\n                    \"rule_id\": 0,\n                    \"status\": 1,\n                    \"create_time\": \"2019-08-11 13:36:50\",\n                    \"update_time\": \"2019-08-11 13:36:50\",\n                    \"name\": \"设置\",\n                    \"desc\": \"set_base\",\n                    \"frontpath\": null,\n                    \"condition\": null,\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": null,\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 178,\n                        \"role_id\": 2,\n                        \"rule_id\": 9\n                    }\n                },\n                {\n                    \"id\": 10,\n                    \"rule_id\": 5,\n                    \"status\": 1,\n                    \"create_time\": \"2019-08-11 13:37:02\",\n                    \"update_time\": \"2019-08-11 13:37:02\",\n                    \"name\": \"后台首页\",\n                    \"desc\": \"index\",\n                    \"frontpath\": \"index/index\",\n                    \"condition\": null,\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-home\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 164,\n                        \"role_id\": 2,\n                        \"rule_id\": 10\n                    }\n                },\n                {\n                    \"id\": 11,\n                    \"rule_id\": 5,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:38:32\",\n                    \"update_time\": \"2019-12-28 13:38:32\",\n                    \"name\": \"相册管理\",\n                    \"desc\": \"image\",\n                    \"frontpath\": \"image/index\",\n                    \"condition\": null,\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-picture\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 114,\n                        \"role_id\": 2,\n                        \"rule_id\": 11\n                    }\n                },\n                {\n                    \"id\": 12,\n                    \"rule_id\": 5,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:39:36\",\n                    \"update_time\": \"2019-12-28 13:39:36\",\n                    \"name\": \"商品列表\",\n                    \"desc\": \"shop_goods_list\",\n                    \"frontpath\": \"shop/goods/list\",\n                    \"condition\": null,\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-claim\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 115,\n                        \"role_id\": 2,\n                        \"rule_id\": 12\n                    }\n                },\n                {\n                    \"id\": 13,\n                    \"rule_id\": 6,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:42:13\",\n                    \"update_time\": \"2019-12-28 13:42:13\",\n                    \"name\": \"商品列表\",\n                    \"desc\": \"shop_goods_list\",\n                    \"frontpath\": \"shop/goods/list\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-claim\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 166,\n                        \"role_id\": 2,\n                        \"rule_id\": 13\n                    }\n                },\n                {\n                    \"id\": 14,\n                    \"rule_id\": 6,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:44:00\",\n                    \"update_time\": \"2019-12-28 13:44:00\",\n                    \"name\": \"分类列表\",\n                    \"desc\": \"shop_category_list\",\n                    \"frontpath\": \"shop/category/list\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 167,\n                        \"role_id\": 2,\n                        \"rule_id\": 14\n                    }\n                },\n                {\n                    \"id\": 15,\n                    \"rule_id\": 6,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:44:32\",\n                    \"update_time\": \"2019-12-28 13:44:32\",\n                    \"name\": \"商品规格\",\n                    \"desc\": \"shop_sku_list\",\n                    \"frontpath\": \"shop/sku/list\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 168,\n                        \"role_id\": 2,\n                        \"rule_id\": 15\n                    }\n                },\n                {\n                    \"id\": 16,\n                    \"rule_id\": 6,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:44:45\",\n                    \"update_time\": \"2019-12-28 13:44:45\",\n                    \"name\": \"商品类型\",\n                    \"desc\": \"shop_type_list\",\n                    \"frontpath\": \"shop/type/list\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 169,\n                        \"role_id\": 2,\n                        \"rule_id\": 16\n                    }\n                },\n                {\n                    \"id\": 17,\n                    \"rule_id\": 6,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:44:56\",\n                    \"update_time\": \"2019-12-28 13:44:56\",\n                    \"name\": \"商品评论\",\n                    \"desc\": \"shop_comment_list\",\n                    \"frontpath\": \"shop/comment/list\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 170,\n                        \"role_id\": 2,\n                        \"rule_id\": 17\n                    }\n                },\n                {\n                    \"id\": 18,\n                    \"rule_id\": 7,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:45:42\",\n                    \"update_time\": \"2019-12-28 13:45:42\",\n                    \"name\": \"订单管理\",\n                    \"desc\": \"order_order_list\",\n                    \"frontpath\": \"order/order/list\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 172,\n                        \"role_id\": 2,\n                        \"rule_id\": 18\n                    }\n                },\n                {\n                    \"id\": 19,\n                    \"rule_id\": 7,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:46:00\",\n                    \"update_time\": \"2019-12-28 13:46:00\",\n                    \"name\": \"发票管理\",\n                    \"desc\": \"order_invoice_list\",\n                    \"frontpath\": \"order/invoice/list\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 173,\n                        \"role_id\": 2,\n                        \"rule_id\": 19\n                    }\n                },\n                {\n                    \"id\": 20,\n                    \"rule_id\": 7,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:46:17\",\n                    \"update_time\": \"2019-12-28 13:46:17\",\n                    \"name\": \"售后服务\",\n                    \"desc\": \"order_after-sale_list\",\n                    \"frontpath\": \"order/after-sale/list\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 174,\n                        \"role_id\": 2,\n                        \"rule_id\": 20\n                    }\n                },\n                {\n                    \"id\": 21,\n                    \"rule_id\": 8,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:46:45\",\n                    \"update_time\": \"2019-12-28 13:46:45\",\n                    \"name\": \"会员列表\",\n                    \"desc\": \"user_user-list_list\",\n                    \"frontpath\": \"user/user-list/list\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 176,\n                        \"role_id\": 2,\n                        \"rule_id\": 21\n                    }\n                },\n                {\n                    \"id\": 22,\n                    \"rule_id\": 8,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:46:59\",\n                    \"update_time\": \"2019-12-28 13:46:59\",\n                    \"name\": \"会员等级\",\n                    \"desc\": \"user_user-level_list\",\n                    \"frontpath\": \"user/user-level/list\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 177,\n                        \"role_id\": 2,\n                        \"rule_id\": 22\n                    }\n                },\n                {\n                    \"id\": 23,\n                    \"rule_id\": 9,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:47:15\",\n                    \"update_time\": \"2020-02-05 03:11:10\",\n                    \"name\": \"基础设置\",\n                    \"desc\": \"set_base\",\n                    \"frontpath\": \"set/base/index\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 179,\n                        \"role_id\": 2,\n                        \"rule_id\": 23\n                    }\n                },\n                {\n                    \"id\": 24,\n                    \"rule_id\": 9,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:47:27\",\n                    \"update_time\": \"2019-12-28 13:47:27\",\n                    \"name\": \"物流设置\",\n                    \"desc\": \"set_express\",\n                    \"frontpath\": \"set/express/index\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 180,\n                        \"role_id\": 2,\n                        \"rule_id\": 24\n                    }\n                },\n                {\n                    \"id\": 25,\n                    \"rule_id\": 9,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:47:39\",\n                    \"update_time\": \"2019-12-28 13:47:39\",\n                    \"name\": \"管理员管理\",\n                    \"desc\": \"set_manager\",\n                    \"frontpath\": \"set/manager/index\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 181,\n                        \"role_id\": 2,\n                        \"rule_id\": 25\n                    }\n                },\n                {\n                    \"id\": 26,\n                    \"rule_id\": 9,\n                    \"status\": 1,\n                    \"create_time\": \"2019-12-28 13:47:57\",\n                    \"update_time\": \"2019-12-28 13:47:57\",\n                    \"name\": \"交易设置\",\n                    \"desc\": \"set_payment\",\n                    \"frontpath\": \"set/payment/index\",\n                    \"condition\": \"\",\n                    \"menu\": 1,\n                    \"order\": 20,\n                    \"icon\": \"el-icon-s-help\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 182,\n                        \"role_id\": 2,\n                        \"rule_id\": 26\n                    }\n                },\n                {\n                    \"id\": 27,\n                    \"rule_id\": 9,\n                    \"status\": 1,\n                    \"create_time\": \"2020-01-03 21:05:50\",\n                    \"update_time\": \"2020-01-03 21:05:50\",\n                    \"name\": \"规则管理\",\n                    \"desc\": \"\",\n                    \"frontpath\": null,\n                    \"condition\": \"admin.rule\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 183,\n                        \"role_id\": 2,\n                        \"rule_id\": 27\n                    }\n                },\n                {\n                    \"id\": 28,\n                    \"rule_id\": 27,\n                    \"status\": 1,\n                    \"create_time\": \"2020-01-03 21:06:50\",\n                    \"update_time\": \"2020-01-03 21:06:50\",\n                    \"name\": \"添加规则\",\n                    \"desc\": \"\",\n                    \"frontpath\": null,\n                    \"condition\": \"admin.rule/save\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"POST\",\n                    \"pivot\": {\n                        \"id\": 184,\n                        \"role_id\": 2,\n                        \"rule_id\": 28\n                    }\n                },\n                {\n                    \"id\": 29,\n                    \"rule_id\": 27,\n                    \"status\": 1,\n                    \"create_time\": \"2020-01-03 21:09:31\",\n                    \"update_time\": \"2020-01-03 21:09:31\",\n                    \"name\": \"更新规则\",\n                    \"desc\": \"\",\n                    \"frontpath\": null,\n                    \"condition\": \"admin.rule/update\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"POST\",\n                    \"pivot\": {\n                        \"id\": 185,\n                        \"role_id\": 2,\n                        \"rule_id\": 29\n                    }\n                },\n                {\n                    \"id\": 30,\n                    \"rule_id\": 27,\n                    \"status\": 1,\n                    \"create_time\": \"2020-01-03 21:09:49\",\n                    \"update_time\": \"2020-02-05 03:13:31\",\n                    \"name\": \"删除规则\",\n                    \"desc\": \"\",\n                    \"frontpath\": null,\n                    \"condition\": \"admin.rule/delete\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"POST\",\n                    \"pivot\": {\n                        \"id\": 186,\n                        \"role_id\": 2,\n                        \"rule_id\": 30\n                    }\n                },\n                {\n                    \"id\": 31,\n                    \"rule_id\": 27,\n                    \"status\": 1,\n                    \"create_time\": \"2020-01-03 21:10:10\",\n                    \"update_time\": \"2020-01-03 21:10:10\",\n                    \"name\": \"规则列表\",\n                    \"desc\": \"\",\n                    \"frontpath\": null,\n                    \"condition\": \"admin.rule/index\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 187,\n                        \"role_id\": 2,\n                        \"rule_id\": 31\n                    }\n                },\n                {\n                    \"id\": 32,\n                    \"rule_id\": 27,\n                    \"status\": 1,\n                    \"create_time\": \"2020-01-03 21:10:59\",\n                    \"update_time\": \"2020-01-03 21:10:59\",\n                    \"name\": \"更新规则状态\",\n                    \"desc\": \"\",\n                    \"frontpath\": null,\n                    \"condition\": \"admin.rule/updatestatus\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"POST\",\n                    \"pivot\": {\n                        \"id\": 188,\n                        \"role_id\": 2,\n                        \"rule_id\": 32\n                    }\n                },\n                {\n                    \"id\": 33,\n                    \"rule_id\": 9,\n                    \"status\": 1,\n                    \"create_time\": \"2020-01-04 18:15:47\",\n                    \"update_time\": \"2020-01-04 18:15:47\",\n                    \"name\": \"角色管理\",\n                    \"desc\": \"\",\n                    \"frontpath\": null,\n                    \"condition\": \"admin.role\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 189,\n                        \"role_id\": 2,\n                        \"rule_id\": 33\n                    }\n                },\n                {\n                    \"id\": 34,\n                    \"rule_id\": 33,\n                    \"status\": 1,\n                    \"create_time\": \"2020-01-04 18:16:16\",\n                    \"update_time\": \"2020-01-04 18:16:16\",\n                    \"name\": \"添加角色\",\n                    \"desc\": \"\",\n                    \"frontpath\": null,\n                    \"condition\": \"admin.role/save\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"POST\",\n                    \"pivot\": {\n                        \"id\": 190,\n                        \"role_id\": 2,\n                        \"rule_id\": 34\n                    }\n                },\n                {\n                    \"id\": 35,\n                    \"rule_id\": 33,\n                    \"status\": 1,\n                    \"create_time\": \"2020-02-05 03:12:30\",\n                    \"update_time\": \"2020-02-05 03:12:30\",\n                    \"name\": \"更新角色\",\n                    \"desc\": \"\",\n                    \"frontpath\": \"\",\n                    \"condition\": \"admin.role/update\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"POST\",\n                    \"pivot\": {\n                        \"id\": 191,\n                        \"role_id\": 2,\n                        \"rule_id\": 35\n                    }\n                },\n                {\n                    \"id\": 36,\n                    \"rule_id\": 33,\n                    \"status\": 1,\n                    \"create_time\": \"2020-02-05 03:14:00\",\n                    \"update_time\": \"2020-02-05 03:14:00\",\n                    \"name\": \"删除角色\",\n                    \"desc\": \"\",\n                    \"frontpath\": \"\",\n                    \"condition\": \"admin.role/delete\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"POST\",\n                    \"pivot\": {\n                        \"id\": 192,\n                        \"role_id\": 2,\n                        \"rule_id\": 36\n                    }\n                },\n                {\n                    \"id\": 37,\n                    \"rule_id\": 33,\n                    \"status\": 1,\n                    \"create_time\": \"2020-02-05 03:14:25\",\n                    \"update_time\": \"2020-02-05 03:14:25\",\n                    \"name\": \"角色列表\",\n                    \"desc\": \"\",\n                    \"frontpath\": \"\",\n                    \"condition\": \"admin.role/index\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"GET\",\n                    \"pivot\": {\n                        \"id\": 193,\n                        \"role_id\": 2,\n                        \"rule_id\": 37\n                    }\n                },\n                {\n                    \"id\": 38,\n                    \"rule_id\": 33,\n                    \"status\": 1,\n                    \"create_time\": \"2020-02-05 03:14:53\",\n                    \"update_time\": \"2020-02-05 03:14:53\",\n                    \"name\": \"更新角色状态\",\n                    \"desc\": \"\",\n                    \"frontpath\": \"\",\n                    \"condition\": \"admin.role/updatestatus\",\n                    \"menu\": 0,\n                    \"order\": 20,\n                    \"icon\": \"\",\n                    \"method\": \"POST\",\n                    \"pivot\": {\n                        \"id\": 194,\n                        \"role_id\": 2,\n                        \"rule_id\": 38\n                    }\n                }\n            ]\n        },\n        \"token\": \"e4d166ee3c4df292a162e4aa494a8b7f6b73883e\",\n        \"tree\": [\n            {\n                \"id\": 5,\n                \"rule_id\": 0,\n                \"status\": 1,\n                \"create_time\": \"2019-08-11 13:36:09\",\n                \"update_time\": \"2020-02-07 16:46:37\",\n                \"name\": \"首页\",\n                \"desc\": \"index\",\n                \"frontpath\": null,\n                \"condition\": null,\n                \"menu\": 1,\n                \"order\": 21,\n                \"icon\": null,\n                \"method\": \"GET\",\n                \"child\": [\n                    {\n                        \"id\": 10,\n                        \"rule_id\": 5,\n                        \"status\": 1,\n                        \"create_time\": \"2019-08-11 13:37:02\",\n                        \"update_time\": \"2019-08-11 13:37:02\",\n                        \"name\": \"后台首页\",\n                        \"desc\": \"index\",\n                        \"frontpath\": \"index/index\",\n                        \"condition\": null,\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-home\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 11,\n                        \"rule_id\": 5,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:38:32\",\n                        \"update_time\": \"2019-12-28 13:38:32\",\n                        \"name\": \"相册管理\",\n                        \"desc\": \"image\",\n                        \"frontpath\": \"image/index\",\n                        \"condition\": null,\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-picture\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 12,\n                        \"rule_id\": 5,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:39:36\",\n                        \"update_time\": \"2019-12-28 13:39:36\",\n                        \"name\": \"商品列表\",\n                        \"desc\": \"shop_goods_list\",\n                        \"frontpath\": \"shop/goods/list\",\n                        \"condition\": null,\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-claim\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    }\n                ]\n            },\n            {\n                \"id\": 6,\n                \"rule_id\": 0,\n                \"status\": 1,\n                \"create_time\": \"2019-08-11 13:36:36\",\n                \"update_time\": \"2019-08-11 13:36:36\",\n                \"name\": \"商品\",\n                \"desc\": \"shop_goods_list\",\n                \"frontpath\": null,\n                \"condition\": null,\n                \"menu\": 1,\n                \"order\": 20,\n                \"icon\": null,\n                \"method\": \"GET\",\n                \"child\": [\n                    {\n                        \"id\": 13,\n                        \"rule_id\": 6,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:42:13\",\n                        \"update_time\": \"2019-12-28 13:42:13\",\n                        \"name\": \"商品列表\",\n                        \"desc\": \"shop_goods_list\",\n                        \"frontpath\": \"shop/goods/list\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-claim\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 14,\n                        \"rule_id\": 6,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:44:00\",\n                        \"update_time\": \"2019-12-28 13:44:00\",\n                        \"name\": \"分类列表\",\n                        \"desc\": \"shop_category_list\",\n                        \"frontpath\": \"shop/category/list\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 15,\n                        \"rule_id\": 6,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:44:32\",\n                        \"update_time\": \"2019-12-28 13:44:32\",\n                        \"name\": \"商品规格\",\n                        \"desc\": \"shop_sku_list\",\n                        \"frontpath\": \"shop/sku/list\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 16,\n                        \"rule_id\": 6,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:44:45\",\n                        \"update_time\": \"2019-12-28 13:44:45\",\n                        \"name\": \"商品类型\",\n                        \"desc\": \"shop_type_list\",\n                        \"frontpath\": \"shop/type/list\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 17,\n                        \"rule_id\": 6,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:44:56\",\n                        \"update_time\": \"2019-12-28 13:44:56\",\n                        \"name\": \"商品评论\",\n                        \"desc\": \"shop_comment_list\",\n                        \"frontpath\": \"shop/comment/list\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    }\n                ]\n            },\n            {\n                \"id\": 7,\n                \"rule_id\": 0,\n                \"status\": 1,\n                \"create_time\": \"2019-08-11 13:36:40\",\n                \"update_time\": \"2019-08-11 13:36:40\",\n                \"name\": \"订单\",\n                \"desc\": \"order_order_list\",\n                \"frontpath\": null,\n                \"condition\": null,\n                \"menu\": 1,\n                \"order\": 20,\n                \"icon\": null,\n                \"method\": \"GET\",\n                \"child\": [\n                    {\n                        \"id\": 18,\n                        \"rule_id\": 7,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:45:42\",\n                        \"update_time\": \"2019-12-28 13:45:42\",\n                        \"name\": \"订单管理\",\n                        \"desc\": \"order_order_list\",\n                        \"frontpath\": \"order/order/list\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 19,\n                        \"rule_id\": 7,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:46:00\",\n                        \"update_time\": \"2019-12-28 13:46:00\",\n                        \"name\": \"发票管理\",\n                        \"desc\": \"order_invoice_list\",\n                        \"frontpath\": \"order/invoice/list\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 20,\n                        \"rule_id\": 7,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:46:17\",\n                        \"update_time\": \"2019-12-28 13:46:17\",\n                        \"name\": \"售后服务\",\n                        \"desc\": \"order_after-sale_list\",\n                        \"frontpath\": \"order/after-sale/list\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    }\n                ]\n            },\n            {\n                \"id\": 8,\n                \"rule_id\": 0,\n                \"status\": 1,\n                \"create_time\": \"2019-08-11 13:36:43\",\n                \"update_time\": \"2019-08-11 13:36:43\",\n                \"name\": \"会员\",\n                \"desc\": \"user_user-list_list\",\n                \"frontpath\": null,\n                \"condition\": null,\n                \"menu\": 1,\n                \"order\": 20,\n                \"icon\": null,\n                \"method\": \"GET\",\n                \"child\": [\n                    {\n                        \"id\": 21,\n                        \"rule_id\": 8,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:46:45\",\n                        \"update_time\": \"2019-12-28 13:46:45\",\n                        \"name\": \"会员列表\",\n                        \"desc\": \"user_user-list_list\",\n                        \"frontpath\": \"user/user-list/list\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 22,\n                        \"rule_id\": 8,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:46:59\",\n                        \"update_time\": \"2019-12-28 13:46:59\",\n                        \"name\": \"会员等级\",\n                        \"desc\": \"user_user-level_list\",\n                        \"frontpath\": \"user/user-level/list\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    }\n                ]\n            },\n            {\n                \"id\": 9,\n                \"rule_id\": 0,\n                \"status\": 1,\n                \"create_time\": \"2019-08-11 13:36:50\",\n                \"update_time\": \"2019-08-11 13:36:50\",\n                \"name\": \"设置\",\n                \"desc\": \"set_base\",\n                \"frontpath\": null,\n                \"condition\": null,\n                \"menu\": 1,\n                \"order\": 20,\n                \"icon\": null,\n                \"method\": \"GET\",\n                \"child\": [\n                    {\n                        \"id\": 23,\n                        \"rule_id\": 9,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:47:15\",\n                        \"update_time\": \"2020-02-05 03:11:10\",\n                        \"name\": \"基础设置\",\n                        \"desc\": \"set_base\",\n                        \"frontpath\": \"set/base/index\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 24,\n                        \"rule_id\": 9,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:47:27\",\n                        \"update_time\": \"2019-12-28 13:47:27\",\n                        \"name\": \"物流设置\",\n                        \"desc\": \"set_express\",\n                        \"frontpath\": \"set/express/index\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 25,\n                        \"rule_id\": 9,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:47:39\",\n                        \"update_time\": \"2019-12-28 13:47:39\",\n                        \"name\": \"管理员管理\",\n                        \"desc\": \"set_manager\",\n                        \"frontpath\": \"set/manager/index\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 26,\n                        \"rule_id\": 9,\n                        \"status\": 1,\n                        \"create_time\": \"2019-12-28 13:47:57\",\n                        \"update_time\": \"2019-12-28 13:47:57\",\n                        \"name\": \"交易设置\",\n                        \"desc\": \"set_payment\",\n                        \"frontpath\": \"set/payment/index\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 20,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    },\n                    {\n                        \"id\": 98,\n                        \"rule_id\": 9,\n                        \"status\": 1,\n                        \"create_time\": \"2020-04-27 19:15:18\",\n                        \"update_time\": \"2020-04-27 19:15:55\",\n                        \"name\": \"app首页配置\",\n                        \"desc\": \"app\",\n                        \"frontpath\": \"app/index\",\n                        \"condition\": \"\",\n                        \"menu\": 1,\n                        \"order\": 50,\n                        \"icon\": \"el-icon-s-help\",\n                        \"method\": \"GET\",\n                        \"child\": []\n                    }\n                ]\n            }\n        ],\n        \"ruleNames\": [\n            \"规则管理\",\n            \"添加规则\",\n            \"更新规则\",\n            \"删除规则\",\n            \"规则列表\",\n            \"更新规则状态\",\n            \"角色管理\",\n            \"添加角色\",\n            \"更新角色\",\n            \"删除角色\",\n            \"角色列表\",\n            \"更新角色状态\"\n        ]\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "294105f1-0bb2-48c9-902e-20671e19acec",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2e96a295-1b00-454e-81d2-2fc129932223",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "3bddee40-d6b6-41a0-afc2-2a228769e49c",
+			"key": "domain",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
