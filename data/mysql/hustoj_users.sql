@@ -26,6 +26,7 @@ CREATE TABLE `hustoj_users` (
   `status` varchar(40) DEFAULT '0',
   `school` varchar(40) DEFAULT NULL,
   `email` varchar(40) NOT NULL,
+  `super` tinyint DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

@@ -16,13 +16,14 @@ class CheckToken //检查token的正确性, 以设置为全局中间件 , 可在
     public function handle($request, \Closure $next)
     {
         $request->id=''; 
-        $token=new Token($request->param('token'));
+        $token=new Token($request->header('token'));
         $request->token=$token;
+        //dump($token);
         if ($token->hasValue()){ //如果存在token, 判断token是否合法
             if (!$token->check())ApiException("无效token");
             $request->id=$token->getId();
         }
-
+        //dump($request);
         //这里回调函数返回response对象
         return $next($request);
     }

@@ -18,13 +18,13 @@ class User extends BaseController
      */ 
     public function register(Request $request){//注册用户
         $userdata=$request->param();
-        $user=Hu::create($userdata)->hidden('password');
+        $user=Hu::create($userdata)->hidden(['password']);
         $token=new token('',(string)$user['id']);
         $data=[
             'userdata' => $userdata,
             'token' => $token->build(3600),
         ];
-        showSuccess($data,'注册成功');
+        return(showSuccess($data,'注册成功'))   ;
     }
 
     /**
@@ -52,7 +52,7 @@ class User extends BaseController
      * 删除token
      * 返回信息
      */
-    public function logout(Request $request){
+    public function logout(Request $request){//
         $user=Hu::find($request->id);
         if($user->status==0) ApiException("",'用户未登录');
         $user->status=0;
