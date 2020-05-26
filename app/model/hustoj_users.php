@@ -10,6 +10,6 @@ class hustoj_users extends Model{
         return md5($value);
     }
     public function problem(){
-        return $this->belongsToMany(Hp::class,Ha::class,'pid','uid',);
+        return $this->belongsToMany(Hp::class,Ha::class,'pid','uid');
     }
 }
