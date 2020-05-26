@@ -47,8 +47,6 @@ class user extends Validate
         return true;
     }
     public function checkPassword($value,$rule,$data){ // 验证密码是否正确
-        //dump($value);
-        //dump($data);return 1;
         $password = Hu::where('username',$data['username'])->value('password');
         if (md5($value)==$password)return true;
         return "密码错误";
@@ -58,9 +56,16 @@ class user extends Validate
             return '用户已经注销';
         return true;
     }
-
+    public function isTrue($value,$rule,$data){ 
+        if ($value!=$data['requiredPassword'])
+            return "第二次输入的密码与第一次不同";
+        return true;
+    }
     public function sceneRegister(){//注册场景
-        $data = $this->append('username','checkHas'); 
+        $data = $this->append([
+            'username' => 'checkHas',
+            'password' => 'isTrue',
+        ]); 
         return $data;   
     }
     public function sceneLogin(){//登录场景
