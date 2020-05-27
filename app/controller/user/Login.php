@@ -11,6 +11,8 @@ class Login
 {
     public function authenticate()//登录验证
     {
+        //echo class_basename($this).' '.Request::controller();
+        //return 0;   
         $userData = Request::param();
         $user=Hu::where('username',$userData['username'])->find(); //从数据库查找用户的信息, 类型为object
         $user->status ='1'; //更改状态

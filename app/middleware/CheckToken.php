@@ -17,13 +17,13 @@ class CheckToken //检查token的正确性, 以设置为全局中间件 , 可在
     {
         $request->id=''; 
         $token=new Token($request->header('token'));
-        $request->token=$token;
-        //dump($token);
+        $request->token=$token;        
         if ($token->hasValue()){ //如果存在token, 判断token是否合法
             if (!$token->check())ApiException("无效token");
             $request->id=$token->getId();
         }
-        //dump($request);
+        \think\facade\Config::set(['id' => $request->id],'config');//将id存入配置中,目前只会这种办法设置全局变量
+        
         //这里回调函数返回response对象
         return $next($request);
     }

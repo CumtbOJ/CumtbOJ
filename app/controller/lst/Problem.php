@@ -17,6 +17,7 @@ class Problem{
             'submitTime',
             'ACTime',
         ])->hidden(['submitTime','ACTime'])->select();
+        /* 之前判断status的方法,现在已经弃用
         foreach($dataAll as &$data){            
             $users=Hp::find($data['number'])->users;
             foreach($users as $user){
@@ -24,10 +25,8 @@ class Problem{
                     $data['status']=1;
             }
         }
-        if ($dataAll->isEmpty()){
-            ApiException("题目列表为空");
-        }else {
-            return showSuccess($dataAll,"题目列表");
-        }
+        */
+        return showSuccess($dataAll,"题目列表");
+        
     }
 }
