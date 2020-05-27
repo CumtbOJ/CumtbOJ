@@ -23,9 +23,10 @@ class hustoj_problem extends Model{
         return $value."s";
     }
     public function getStatusAttr($value,$data){//题目状态,1表示ac , 0表示没有ac, null代表未登录
+        //return 1;
         $id=\think\facade\Config::get('config.id');//目前只会这样获取id 
-        if ($id==Null) return null;
-        $problem=Hu::find($id)->problem;
+        if ($id==Null) return -1;
+        $problem=\think\facade\Config::get('config.problem');
         foreach($problem as $one){
             if ($one['number'] == $data['number'])
                 return 1;

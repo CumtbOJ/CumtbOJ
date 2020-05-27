@@ -19,14 +19,13 @@ Route::get('hello/:name', 'index/hello');
 
 
 Route::group('user',function () {  //user组
-    Route::rule('iuo', 'user/Register','get|post')->middleware(Register::class); //注册用户
-    Route::rule('li','user/Login','get|post')->middleware(Login::class);//登录用户
-    Route::rule('lo','user/Logout','get|post');//登出用户
+    Route::rule('iuo', 'user/register','get|post')->middleware(Register::class); //注册用户
+    Route::rule('li','User/login','get|post')->middleware(Login::class);//登录用户
+    Route::rule('lo','User/logout','get|post');//登出用户
 })->allowCrossDomain();
 
 Route::group(function(){  
-    Route::rule('lp','lst.Problem/showProblem','get|post'); //列出题目列表
-    Route::rule('lpc','lst.ProblemContent/showProblemContent','get|post'); //列出题目内容
-    
+    Route::rule('lp','Problem/showProblem','get|post'); //列出题目列表
+    Route::rule('lpc','Problem/showProblemContent','get|post'); //列出题目内容
 })->allowCrossDomain();
 

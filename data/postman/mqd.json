@@ -41,7 +41,8 @@
 								"database",
 								"insAll"
 							]
-						}
+						},
+						"description": "0. 需要等25秒左右\n1. 一键添加用户和题目\n2. 用户数量10个 \n```\n    用户名: testX (X为1~10)\n    密码: X  \n```\n3. 题目100个\n4. 每个用户AC了(0~20)道题目"
 					},
 					"response": []
 				},
@@ -60,7 +61,7 @@
 								"delDir"
 							]
 						},
-						"description": "如果操作数据库报了奇怪错误,就清除缓存试试"
+						"description": "1. 如果操作数据库报了奇怪错误,就清除缓存试试\n2. 删除文件 runtime文件夹\n3. 注意清除缓存所有token全部失效"
 					},
 					"response": []
 				}
@@ -76,9 +77,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{local}}/database/showUser",
+							"raw": "{{baseurl}}/database/showUser",
 							"host": [
-								"{{local}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"database",
@@ -117,7 +118,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "{{baseurl}}/database/showAccess",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"database",
+								"showAccess"
+							]
 						}
 					},
 					"response": []

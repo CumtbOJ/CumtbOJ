@@ -76,9 +76,9 @@ class Database{
     }
     public function insProblem(){ //自动添加题目
         $num=Request::param("num");
-        $num=$num?$num:10;
+        $num=$num?$num:100;
+        $dataAll=[];
         for($i=1;$i<=$num;$i++){
-            $problem=new Hp();
             $tag=["数据结构","贪心","搜索","动态规划","二分","数论","图论"];
             $submitTime = mt_rand(0,50);
             $data=[
@@ -97,9 +97,10 @@ class Database{
                 'hint' => '这是提示',
                 'provider' => '这是题目提供者',
             ];
-            $problem->save($data);
-            //return json($problem->difficulty);
+            $dataAll[]=$data;
         }
+        $problem=new Hp;
+        $problem->saveAll($dataAll);
         return json("添加成功".$num."个题目");
     }
     public function insUser(){//自动添加用户
@@ -125,17 +126,20 @@ class Database{
         $problem = Hp::column('number');
         $userSize=sizeof($user);
         $problemSize=sizeof($problem);
+        $arr=range(0,$problemSize-1);
+        $dataAll=[];
         foreach($user as $uid){
-            $arr=range(0,$problemSize-1);
             shuffle($arr);
-            $randSize=mt_rand(0,5);
+            $randSize=mt_rand(0,$problemSize/5);
             for($i=0;$i<$randSize;$i++){
-                Ha::create([
-                    'pid' => $problem[$arr[$i]],
+                $dataAll[]=[
+                    'pid' => $problem[$arr[$i]], 
                     'uid' => $uid,
-                ]);
+                ];
             }
         }
+        $tp=new Ha;
+        $tp->saveAll($dataAll);
         return json('添加成功');
     }
     public function insAll(){
