@@ -20,7 +20,7 @@ class Problem extends BaseController{
             'difficulty',
             'rate',
         ])->select();
-        return showSuccess($dataAll,"题目列表");
+        return showSuccess($dataAll,"ok");
     }
 
     /**
@@ -50,7 +50,7 @@ class Problem extends BaseController{
         if ($left == Null)
             ApiException("没有此题目");
         $data=['left' => $left , 'right' => $right];   
-        return showSuccess($data,"跳转成功");
+        return showSuccess($data,"ok");
 
     }
 }

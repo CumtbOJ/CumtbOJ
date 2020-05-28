@@ -17,7 +17,7 @@ class CheckToken //检查token的正确性, 以设置为全局中间件 , 可在
     {
         $request->id=''; 
         $tokenValue=$request->header('token');
-        if($tokenValue==Null) $tokenValue=$request->param('token');
+        if($tokenValue==Null ) $tokenValue=$request->param('token');
         $token=new Token($tokenValue);
         $request->token=$token;        
         if ($token->hasValue()){ //如果存在token, 判断token是否合法

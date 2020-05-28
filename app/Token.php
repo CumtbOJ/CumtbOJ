@@ -18,7 +18,9 @@ class Token{
         return $this->id;
     }
     public function hasValue(){//判断是否有token值
-        return $this->value==''?false:true;
+        if ($this->value==false || $this->value=="false" || $this->value=="" || $this->value==Null)
+            return 0;
+        return 1;
     }
     public function build($expire='3600'){//创建token ,并将原来token删除
         $this->value = (string)md5(uniqid(md5(microtime(true)),true));  
