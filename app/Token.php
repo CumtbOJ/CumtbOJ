@@ -20,6 +20,8 @@ class Token{
     public function hasValue(){//判断是否有token值
         if ($this->value==false || $this->value=="false" || $this->value=="" || $this->value==Null)
             return 0;
+        if (!$this->value)
+            return 0;
         return 1;
     }
     public function build($expire='3600'){//创建token ,并将原来token删除
