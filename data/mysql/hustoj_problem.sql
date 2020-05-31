@@ -19,22 +19,24 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `hustoj_problem`;
 CREATE TABLE `hustoj_problem` (
-  `status` tinyint(1) DEFAULT 0 NOT NULL,
-  `number` int unsigned NOT NULL AUTO_INCREMENT,
+  `status` tinyint DEFAULT 0 NOT NULL,
+  `pid` int unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(40) NOT NULL,	
   `tag` varchar(400) DEFAULT NULL,
   `difficulty` int(40)  NOT NULL,
   `rate` varchar(40) ,
-  `submitTime` int DEFAULT 0,
-  `ACTime` int DEFAULT 0,
+  `totalNumber` int DEFAULT 0,
+  `passNumber` int DEFAULT 0,
   `content` TEXT, 
   `inputFormat` TEXT,
   `outputFormat` TEXT,
-  `sampleInput` TEXT,
-  `sampleOutput` TEXT,
+  `sample` TEXT,
+  `historyScore` int DEFAULT 0,
   `hint` TEXT,
+  `recommond` TEXT,
   `provider` varchar(100),
   `timeLimit` float NOT NULL,
   `memoryLimit` int NOT NULL,
-  PRIMARY KEY (`number`)
+
+  PRIMARY KEY (`pid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;

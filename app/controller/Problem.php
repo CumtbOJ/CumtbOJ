@@ -12,45 +12,22 @@ class Problem extends BaseController{
      * 显示所有题目
      */
     public function showProblem(Request $request){
-        $dataAll=Hp::where('number','>','-1')->visible([
-            'status',
-            'number',
-            'title',
-            'tag',
-            'difficulty',
-            'rate',
-        ])->select();
-        return showSuccess($dataAll,"ok");
+        $dataAll = Hp::showProblem()->select();
+        return showSuccess($dataAll,"题目列表");
     }
 
     /**
      * 显示选定题目的内容
      */
     public function showProblemContent(Request $request){
-        $number = $request->param("number");
-        $left=Hp::where("number",$number)->visible([
-                'title',
-                'content',
-                'inputFormat',
-                'outputFormat',
-                'sampleInput',
-                'sampleOutput',
-                'hint',
-            ])->find();
-        $right=Hp::where("number",$number)->visible([
-            'provider',
-            'difficulty',
-            'status',
-            'rate',
-            'timeLimit',
-            'memoryLimit',
-            'tag',
-        ])->find();     
-
-        if ($left == Null)
-            ApiException("没有此题目");
-        $data=['left' => $left , 'right' => $right];   
-        return showSuccess($data,"ok");
-
+        $pid = $request->param("pid");
+        if (Hp::find($pid)==Null) ApiException('没有此题目');
+        $data=[
+            'tite' => Hp::title($pid)->find(), 
+            'barInfo' => Hp::barInfo($pid)->find(),    
+            'left' => Hp::left($pid)->find(),
+            'right' => Hp::right($pid)->find(),
+        ]; 
+        return showSuccess($data,"题目信息");
     }
 }

@@ -37,7 +37,7 @@ class Database{
         return json($user);
     }
     public function showProblem(){//显示所有题目信息
-        $problem = Hp::where('number','>','-1')->select();
+        $problem = Hp::where('pid','>','-1')->select();
         return json($problem);
     }
     public function showAccess(){//显示所有access信息
@@ -83,17 +83,19 @@ class Database{
             $submitTime = mt_rand(0,50);
             $data=[
                 'difficulty' => mt_rand(0,2),
-                'title' => 'test'.$i,
+                'title' => 'problem'.$i,
                 'tag' => [$tag[mt_rand(0,1)],$tag[mt_rand(2,3)],$tag[mt_rand(4,6)]], 
-                'submitTime' => $submitTime,
-                'ACTime' => mt_rand(0,50)+$submitTime,
+                'passNumber' => $submitTime,
+                'totalNumber' => mt_rand(0,50)+$submitTime,
                 'timeLimit' => 1.5,
                 'memoryLimit' => 256,
                 'content' => '这是题目描述',
                 'inputFormat' => '这是输入格式',
                 'outputFormat' => '这是输出格式',
-                'sampleInput' => '这是输入样例',
-                'sampleOutput' => '这是输出样例',
+                'sample' => [
+                    ["input" => '样例输入1', 'output' => '样例输出1'],
+                    ["input" => '样例输入2', 'output' => '样例输出2'],
+                ],
                 'hint' => '这是提示',
                 'provider' => '这是题目提供者',
             ];
@@ -123,7 +125,7 @@ class Database{
     }
     public function insUserProblem(){//自动添加用户刷题数量
         $user = Hu::column('id');
-        $problem = Hp::column('number');
+        $problem = Hp::column('pid');
         $userSize=sizeof($user);
         $problemSize=sizeof($problem);
         $arr=range(0,$problemSize-1);
@@ -156,7 +158,6 @@ class Database{
     public function many(){
         $user = Hu::find(3);
         $problem = $user->problem;
-        //$problem = $user->problem()->where('number','>',5)->select();
         dump($problem);
     }
 

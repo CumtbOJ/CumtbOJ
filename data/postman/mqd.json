@@ -96,13 +96,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://121.36.4.45/database/showProblem",
-							"protocol": "http",
+							"raw": "{{baseurl}}/database/showProblem",
 							"host": [
-								"121",
-								"36",
-								"4",
-								"45"
+								"{{baseurl}}"
 							],
 							"path": [
 								"database",

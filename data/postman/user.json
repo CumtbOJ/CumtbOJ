@@ -249,12 +249,12 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "test2",
+							"value": "test1",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "2",
+							"value": "1",
 							"type": "text"
 						}
 					],
@@ -274,7 +274,7 @@
 					"query": [
 						{
 							"key": "username",
-							"value": "test2",
+							"value": "test2adf",
 							"disabled": true
 						},
 						{
@@ -481,7 +481,7 @@
 	],
 	"variable": [
 		{
-			"id": "819e3457-cd90-46c8-8877-b358c11340db",
+			"id": "a1e710ed-551e-4ee7-a80e-a6cbb3b0a863",
 			"key": "domain",
 			"value": "",
 			"type": "string"
