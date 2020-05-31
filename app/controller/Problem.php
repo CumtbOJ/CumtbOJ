@@ -23,7 +23,7 @@ class Problem extends BaseController{
         $pid = $request->param("pid");
         if (Hp::find($pid)==Null) ApiException('没有此题目');
         $data=[
-            'tite' => Hp::title($pid)->find(), 
+            'title' => Hp::title($pid)->value('title'), 
             'barInfo' => Hp::barInfo($pid)->find(),    
             'left' => Hp::left($pid)->find(),
             'right' => Hp::right($pid)->find(),
