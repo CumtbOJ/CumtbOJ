@@ -152,8 +152,9 @@ class Database{
         return json("自动添加完毕");
     }
     public function test(){
-        \think\facade\Config::set(['name' => 'mqd'],'config');
-        dump(\think\facade\Config::get('config.name'));
+        $pro = new Hp();
+        $data=$pro->where('pid',3)->value('sample');
+        dump($data);
     }
     public function many(){
         $user = Hu::find(3);

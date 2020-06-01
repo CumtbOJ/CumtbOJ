@@ -30,4 +30,7 @@ class Problem extends BaseController{
         ]; 
         return showSuccess($data,"题目信息");
     }
+    public function submit(Request $requeset){
+        
+    }
 }

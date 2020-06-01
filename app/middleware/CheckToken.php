@@ -21,7 +21,7 @@ class CheckToken //检查token的正确性, 以设置为全局中间件 , 可在
         $token=new Token($tokenValue);
         $request->token=$token;        
         if ($token->hasValue()){ //如果存在token, 判断token是否合法
-            if (!$token->check())ApiException("无效token");
+            if (!$token->check())ApiException("无效token",10000);
             $request->id=$token->getId();
         }
         $user=null;
