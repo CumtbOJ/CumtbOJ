@@ -92,6 +92,7 @@ class File extends Driver
         }
 
         $content = @file_get_contents($filename);
+        //while(strlen($content = file_get_contents($filename) ) == 0 ){}
 
         if (false !== $content) {
             $expire = (int) substr($content, 8, 12);

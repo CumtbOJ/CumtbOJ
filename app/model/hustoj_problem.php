@@ -22,9 +22,9 @@ class hustoj_problem extends Model{
     public function getTimeLimitAttr($value){//时间限制
         return $value."s";
     }
-    public function getStatusAttr($value,$data){//题目状态,1表示ac , 0表示没有ac, null代表未登录
-        $id=\think\facade\Config::get('config.id');//目前只会这样获取id 
-        if ($id==Null) return -1;
+    public function getStatusAttr($value,$data){//题目状态,1表示ac , 0表示没有ac, -1代表未登录
+        $uid=\think\facade\Config::get('config.uid');//目前只会这样获取id 
+        if ($uid==Null) return -1;
         $problem=\think\facade\Config::get('config.problem');
         foreach($problem as $one){
             if ($one['pid'] == $data['pid'])
@@ -32,7 +32,7 @@ class hustoj_problem extends Model{
         }
         return 0;
     }
-    public function scopeShowProblem($query){
+    public function scopeShowProblem($query){ //题目列表信息
         $query->visible([
             'status',
             'pid',
@@ -42,10 +42,10 @@ class hustoj_problem extends Model{
             'rate',
         ]);
     }
-    public function scopeTitle($query,$pid){
+    public function scopeTitle($query,$pid){ //标题
         $query->where("pid",$pid)->visible(['title']);
     }
-    public function scopeBarInfo($query,$pid){
+    public function scopeBarInfo($query,$pid){ //题目内容barInfo
         $query->where('pid',$pid)->visible([
             'totalNumber',
             'passNumber',
@@ -53,7 +53,7 @@ class hustoj_problem extends Model{
             'memoryLimit',
         ]);
     }
-    public function scopeLeft($query,$pid){
+    public function scopeLeft($query,$pid){ //题目内容左半部分
         $query->where("pid",$pid)->visible([
             'content',
             'inputFormat',
@@ -62,7 +62,7 @@ class hustoj_problem extends Model{
             'hint',
         ]);
     }
-    public function scopeRight($query,$pid){
+    public function scopeRight($query,$pid){ //题目内容右半部分
         $query->where("pid",$pid)->visible([
             'provider',
             'difficulty',

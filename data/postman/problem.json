@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "90888b93-6da5-4381-8ef6-720cb50ea5b7",
+		"name": "problem",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "problem",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "0",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseurl}}/lp",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"lp"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "0/1",
+							"description": "当前用户是否做过该题目boolean",
+							"disabled": true
+						},
+						{
+							"key": "number",
+							"value": "12",
+							"description": "题号number",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "超级无敌小可爱",
+							"description": "题目名称string",
+							"disabled": true
+						},
+						{
+							"key": "tag",
+							"value": "线段树",
+							"description": "算法标签string",
+							"disabled": true
+						},
+						{
+							"key": "difficulty",
+							"value": "0/1/2",
+							"description": "0简单,1中等,2困难",
+							"disabled": true
+						},
+						{
+							"key": "rate",
+							"value": "0.78",
+							"description": "小数点",
+							"disabled": true
+						}
+					]
+				},
+				"description": "题目列表\n\n我不需要传参数，我只需要向后端拿数据\n\n```\n{\n    'msg':'ok',\n    'data':[\n        {\n            status:'',\n            pid:12,\n            title:'',\n            tag:1,\n            difficulty:1,\n            rate:10/30\n        },\n        {\n            status:'',\n            pid:12,\n            title:'',\n            tag:1,\n            difficulty:1,\n            rate:30/50\n        }\n    ],\n}\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "challenge",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "?status=‘已结束’ 、‘未开始’，‘正在比赛’&title='acm周赛'&type='acm','oi','作业'&time=05-17 14:00-17:30&number=5&founder=",
+					"query": [
+						{
+							"key": "status",
+							"value": "‘已结束’ 、‘未开始’，‘正在比赛’",
+							"description": "string"
+						},
+						{
+							"key": "title",
+							"value": "'acm周赛'",
+							"description": "string"
+						},
+						{
+							"key": "type",
+							"value": "'acm','oi','作业'",
+							"description": "string 比赛类型"
+						},
+						{
+							"key": "time",
+							"value": "05-17 14:00-17:30",
+							"description": "起止时间 string"
+						},
+						{
+							"key": "number",
+							"value": "5",
+							"description": "题目数量 number"
+						},
+						{
+							"key": "founder",
+							"value": "",
+							"description": "出题人 string"
+						}
+					]
+				},
+				"description": "比赛&作业列表\n\n前端不传递参数，纯粹的接受数据\n\n```\nreturn{\n//success\n\t{\n\t\tcode:0,\n\t\t form: [\n          {\n            status: 0,\n            title: '周赛',\n            type: 'acm',\n            time: '05-17 14:00-17:30',\n            number: 5,\n            founder: '超级无敌小可爱'\n          }\n        ],\n\t},\n//error\n\t{\n\t\tcode:1\n\t}\n}\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "problemContent",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseurl}}/lpc?pid=2",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"lpc"
+					],
+					"query": [
+						{
+							"key": "pid",
+							"value": "2"
+						}
+					]
+				},
+				"description": "```\n{\n    \"msg\": \"ok\",\n    \"data\": {\n    \t“title”:”题目标题”,\n\t    \"barInfo\":[\n            {“totalNumber: 71},\n            {“passNumber:23}.\n\t        {\"timeLimit\": \"1.5s\"},\n\t        {\"memoryLimit\": \"256MB”}\n\t    ],\n        \"left\": {\n            \"content\": \"这是题目描述\",\n            \"inputFormat\": \"这是输入格式\",\n            \"outputFormat\": \"这是输出格式\",\n            \"sample\": [\n                {\n                    \"input\":\"abcd\",\n                    \"output\":\"123\"\n                },{\n                    \"input\":\"abcd\",\n                    \"output\":\"123\"\n                }\n            ]\n            \"hint\": \"这是提示\"\n        },\n        \"right\": {\n            \"status\": -1,\n            \"provider\": \"这是题目提供者\",\n            \"rate\": 23/57,\n            \"difficulty\": 1,\n\t        “historyScore”:100,\n            \"tag\": [\n                \"贪心\",\n                \"动态规划\",\n                \"数论\"\n            ],\n            “recommond”:[\n\t\t    {\n                pid:12,\n                title:\"abc\"\n            },{\n                pid:32,\n                title:\"bcd\"\n            }]\n        }\n    }\n}\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "提交代码",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "language",
+							"value": "C++",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "int main(){}",
+							"type": "text"
+						},
+						{
+							"key": "pid",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}/sub",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"sub"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a6890a00-554a-4d5c-9eaf-879a64003741",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c9b1e7e5-6511-4a05-83b5-48fdd42254f9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

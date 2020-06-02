@@ -79,6 +79,7 @@ class user extends Validate
             'username'=>'checkNotHas',
             'username'=>'checkStatus',
         ]);
+        return $data;
     }
 
 }

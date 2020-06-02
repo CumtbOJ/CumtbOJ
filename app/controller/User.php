@@ -8,8 +8,7 @@ use app\BaseController;
 use app\Token;
 use app\model\hustoj_users as Hu;
 
-class User extends BaseController
-{
+class User extends BaseController{
     /**
      * 调用全局中间件验证token,没有token这一步自动跳过
      * 验证注册信息, 交给register中间件
@@ -17,7 +16,7 @@ class User extends BaseController
      * 返回用户信息
      */ 
     public function register(Request $request){//注册用户
-        $userdata=$request->param();
+        $userdata=$request->data;
         $user=Hu::create($userdata)->hidden(['password']);
         $token=new token('',(string)$user['id']);
         $data=[
@@ -35,7 +34,7 @@ class User extends BaseController
      * 返回用户信息
      */
     public function login(Request $request){//用户登录
-        $user=Hu::where("username",$request->param('username'))->find(); //通过用户名查找用户
+        $user=Hu::where("username",$request->data['username'])->find(); //通过用户名查找用户
         $user->status=1; 
         $user->save(); //改变状态
 

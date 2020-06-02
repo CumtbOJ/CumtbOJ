@@ -27,5 +27,6 @@ Route::group('user',function () {  //user组
 Route::group(function(){  
     Route::rule('lp','Problem/showProblem','get|post'); //列出题目列表
     Route::rule('lpc','Problem/showProblemContent','get|post'); //列出题目内容
+    Route::rule('sub','SubmitRecord/submit','get|post')->middleware(CheckUser::class); //提交题目
 })->allowCrossDomain();
 

@@ -36,6 +36,16 @@ abstract class BaseController
      */
     protected $middleware = [];
 
+    //当前控制器相关信息
+    protected $cInfo = [];
+    //自定义模型位置
+    protected $modelPath = null;
+    //自动化验证
+    protected $autoValidate = true;
+    //自定义验证场景
+    protected $autoValidateScenes = [];
+    //不需要自动验证
+    protected $excludeValidateCheck = [];
     /**
      * 构造方法
      * @access public
@@ -53,8 +63,35 @@ abstract class BaseController
     // 初始化
     protected function initialize()
     {
-        
+        $this->cInfo = [
+            'name' => class_basename($this),
+            'path' => str_replace('.', '\\', $this->request->controller()),
+            'action' => $this->request->action()
+        ];
+        //自动验证参数
+        $this->autoValidateCheck();
     }
+
+
+    //自动参数验证
+    public function autoValidateCheck()
+    {
+        if ($this->autoValidate && !in_array($this->cInfo['action'], $this->excludeValidateCheck)) {
+            $V = app('app\validate\\' . $this->cInfo['path']);
+            $scene = array_key_exists($this->cInfo['action'], $this->autoValidateScenes) ?
+                $this->autoValidateScenes[$this->cInfo['action']] : $this->cInfo['action'];
+            //halt($this->request->data);
+            if (!$V->scene($scene)->check($this->request->data)) {
+                ApiException($V->getError());
+            }
+        }
+    }
+
+
+
+
+
+
 
     /**
      * 验证数据
