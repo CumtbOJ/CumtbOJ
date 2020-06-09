@@ -1,13 +1,24 @@
 <?php
 namespace app\controller;
 class name {
+    /**
+     * 此文件存一些测试用的数据
+     */
     public function randnick(){
-        return $this->nick[mt_rand(0,38)];
+        $len=count($this->nick);
+        return $this->nick[mt_rand(0,$len)];
     }
     public function randschool(){
-        return $this->school[mt_rand(0,12)];
+        $len=count($this->school);
+        return $this->school[mt_rand(0,$len)];
     }
     public  $nick=[
+        "欧阳俊美",
+        "欧阳俊亿",
+        "欧阳俊逸",
+        "欧阳第一",
+        "欧阳牛逼",
+        "欧阳神仙",
         "゛未来只靠自己つ",
         "自强不息 ェ",
         "吹著空調，吃著西瓜——享受",

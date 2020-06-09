@@ -19,13 +19,12 @@ class CheckToken //检查token的正确性, 以设置为全局中间件 , 可在
         if($tokenValue==Null ) $tokenValue=$request->param('token');
         $token=new Token($tokenValue);
         $uid=$token->getId();
-        //halt($token);
+
         $data=[
             'token' => $token, 
             'uid' => $uid,
         ];
         $request->data=array_merge($data,$request->param()); //将前端信息全部存放到data数组.
-        //halt($request->data);
         if ($token->hasValue() && !$token->check()) // 如果有token就验证token
             ApiException("无效token",10000);
 

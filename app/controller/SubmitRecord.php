@@ -17,4 +17,14 @@ class SubmitRecord extends BaseController
         $hs->save($data);
         return showSuccess($data,'提交成功');
     }
+    public function allRecord(Request $request){
+        $data=Hs::all()->select();
+        return showSuccess($data,'所有提交记录');
+    }
+    public function oneUserRecord(Request $request){
+        $suid=($request->data)['suid'];
+        $data=hs::user($suid)->select();
+
+        return showSuccess($data,'id为'.$suid.'的用户：提交记录');
+    }
 }
