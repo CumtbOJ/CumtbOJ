@@ -42,7 +42,7 @@
 								"insAll"
 							]
 						},
-						"description": "0. 需要等25秒左右\n1. 一键添加用户和题目\n2. 用户数量10个 \n```\n    用户名: testX (X为1~10)\n    密码: X  \n```\n3. 题目100个\n4. 每个用户AC了(0~20)道题目"
+						"description": "0. 需要等25秒以上\n1. 一键添加用户和题目\n2. 用户数量10个 \n```\n    用户名: testX (X为1~10)\n    密码: X  \n```\n3. 题目100个\n4. 每个用户AC了(0~20)道题目\n5. 每个用户添加[0,10]个提交记录"
 					},
 					"response": []
 				},
@@ -125,71 +125,113 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "获取所有用户提交记录",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/database/showSubmitRecord",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"database",
+								"showSubmitRecord"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "清空用户",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseurl}}/database/delUser?username=oyjy",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"database",
-						"delUser"
-					],
-					"query": [
-						{
-							"key": "username",
-							"value": "oyjy"
+			"name": "数据表单个清空",
+			"item": [
+				{
+					"name": "清空用户",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/database/delUser?username=oyjy",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"database",
+								"delUser"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "oyjy"
+								}
+							]
+						},
+						"description": "通过用户名删除用户\n需要参数:\n{\n\tusername\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "清空题目",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/database/delProblem",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"database",
+								"delProblem"
+							]
+						},
+						"description": "把题目全部清空\n\n成功清空会返回 \"清空完毕\""
+					},
+					"response": []
+				},
+				{
+					"name": "清空题目用户关联表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/database/delAccess",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"database",
+								"delAccess"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"description": "通过用户名删除用户\n需要参数:\n{\n\tusername\n}"
-			},
-			"response": []
-		},
-		{
-			"name": "清空题目",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseurl}}/database/delProblem",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"database",
-						"delProblem"
-					]
-				},
-				"description": "把题目全部清空\n\n成功清空会返回 \"清空完毕\""
-			},
-			"response": []
-		},
-		{
-			"name": "清空题目用户关联表",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseurl}}/database/delAccess",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"database",
-						"delAccess"
-					]
+				{
+					"name": "清空用户提交记录",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/database/delSubmitRecord",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"database",
+								"delSubmitRecord"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "自动添加题目",
@@ -242,6 +284,51 @@
 			"response": []
 		},
 		{
+			"name": "自动添加用户刷题数",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/database/insUserProblem",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"database",
+						"insUserProblem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "自动添加用户提交记录",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/database//insSubmitRecord",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"database",
+						"",
+						"insSubmitRecord"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "20",
+							"disabled": true
+						}
+					]
+				},
+				"description": "不需要添加任何参数 , 每个用户会增加[0,10]条提交记录"
+			},
+			"response": []
+		},
+		{
 			"name": "修改用户秘密",
 			"request": {
 				"method": "GET",
@@ -267,24 +354,6 @@
 					]
 				},
 				"description": "如果忘记了密码就直接修改\n需要参数:\n{\n\tusername,\n\tpassword\n}"
-			},
-			"response": []
-		},
-		{
-			"name": "自动添加用户刷题数",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseurl}}/database/insUserProblem",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"database",
-						"insUserProblem"
-					]
-				}
 			},
 			"response": []
 		}

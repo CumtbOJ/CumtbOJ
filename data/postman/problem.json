@@ -184,6 +184,69 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "获取所有提交记录",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/ar",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"ar"
+					]
+				},
+				"description": "```\n{\n    \"msg\":\"所有提交记录\",\n    \"data\":[\n        {\n            \"id\": 1102,\n            \"uid\": 2,\n            \"pid\": 12,\n            \"language\": \"C++\",\n            \"code\": \"int main(){}\",\n            \"score\": 0,\n            \"create_time\": \"2020-06-02 13:52:29\"\n        },\n        {\n            \"id\": 1103,\n            \"uid\": 2,\n            \"pid\": 12,\n            \"language\": \"C++\",\n            \"code\": \"int main(){}\",\n            \"score\": 0,\n            \"create_time\": \"2020-06-02 13:56:38\"\n        },\n    ]\n}\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "获取一个用户记录",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "suid",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}/our?suid=10",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"our"
+					],
+					"query": [
+						{
+							"key": "suid",
+							"value": "10"
+						}
+					]
+				},
+				"description": "只需要传token即可\n```\n{\n    \"msg\": \"id为10的用户：提交记录\",\n    \"data\": [\n        {\n            \"id\": 43,\n            \"uid\": 10,\n            \"pid\": 77,\n            \"language\": \"C++\",\n            \"code\": \"int main(){}\",\n            \"score\": 100,\n            \"create_time\": \"2020-06-09 18:19:07\"\n        },\n        {\n            \"id\": 44,\n            \"uid\": 10,\n            \"pid\": 56,\n            \"language\": \"C++\",\n            \"code\": \"int main(){}\",\n            \"score\": 0,\n            \"create_time\": \"2020-06-09 18:19:07\"\n        },\n}\n```"
+			},
+			"response": []
 		}
 	],
 	"event": [

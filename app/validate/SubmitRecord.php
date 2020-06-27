@@ -40,7 +40,7 @@ class SubmitRecord extends Validate
         return "该用户不存在";
     }
     public function sceneSubmit(){
-        return $this;
+        return $this->remove('suid',['require']);//
     }
     public function sceneAllRecord(){
         return $this->only(['']);
