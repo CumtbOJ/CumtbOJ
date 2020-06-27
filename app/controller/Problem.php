@@ -21,7 +21,7 @@ class Problem {
      * 显示选定题目的内容
      */
     public function showProblemContent(Request $request){
-        $pid = $request->data("pid");
+        $pid = $request->data["pid"];
         if (Hp::find($pid)==Null) ApiException('没有此题目');
         $data=[
             'title' => Hp::title($pid)->value('title'), 
